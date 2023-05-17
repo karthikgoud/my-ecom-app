@@ -1,0 +1,11 @@
+.filter-main-container {
+  display: flex;
+}
+
+.productlist-container {
+  background-color: #f7f7f7;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}

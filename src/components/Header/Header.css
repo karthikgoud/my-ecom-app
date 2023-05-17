@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --grey-btn-bg: #999a9a;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-container {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-right-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo {
+  width: 80px;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 25%;
+  left: 10px;
+}
+
+nav input {
+  border: 1px solid #dedfde;
+  border-radius: 5px;
+  width: 250px;
+  padding: 8px;
+  color: black;
+  padding-left: 2rem;
+}
+
+.cart-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  text-decoration: none;
+}
+
+.cart-container p {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #979696;
+}
+
+.btn-login {
+  padding: 0.3rem 1rem;
+  background-color: var(--grey-btn-bg);
+  color: white;
+  font-weight: 600;
+  border: none;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
+.wishlist-box {
+  position: relative;
+}
+
+.red-circle {
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  color: white;
+  font-size: 8px;
+  font-weight: 600;
+  border-radius: 50%;
+  position: absolute;
+  text-align: center;
+}
+
+.wish-counter {
+  top: -3px;
+  right: -7px;
+}
+
+.cart-counter {
+  top: -5px;
+  left: 13px;
+}
+
+nav h1 {
+  color: #979696;
+}

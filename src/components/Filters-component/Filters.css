@@ -1,0 +1,40 @@
+button {
+  all: unset;
+}
+
+.btn-clear:hover {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* container */
+
+.filter-container {
+  width: 500px;
+  height: calc(100vh-70px);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* filter header */
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* after header */
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input {
+  margin-right: 0.5rem;
+}

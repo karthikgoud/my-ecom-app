@@ -1,0 +1,11 @@
+.hero-container {
+  display: flex;
+  border: solid;
+  height: 350px;
+}
+
+img {
+  object-fit: contain;
+  width: 70%;
+  margin: 0 auto;
+}
