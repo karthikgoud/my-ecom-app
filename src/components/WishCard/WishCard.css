@@ -13,10 +13,6 @@ button {
   width: 100%;
 }
 
-.product-card-container img:hover {
-  cursor: pointer;
-}
-
 .item-name {
   font-size: 0.7rem;
   font-weight: 500;

@@ -1,0 +1,15 @@
+.product-page {
+  margin: 2rem;
+}
+
+.product-details-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 300px;
+  border: solid;
+}

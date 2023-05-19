@@ -1,0 +1,9 @@
+.wish-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.wish-cont h3 {
+  text-align: center;
+  margin-top: 3rem;
+}

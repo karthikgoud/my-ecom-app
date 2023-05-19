@@ -5,6 +5,7 @@ import WishList from "./components/WishList/WishList";
 import Cart from "./components/Cart/Cart";
 import ProductListing from "./components/ProductListing/ProductListing";
 import Mockman from "mockman-js";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:productId" element={<ProductDetails />} />
       </Routes>
     </div>
   );

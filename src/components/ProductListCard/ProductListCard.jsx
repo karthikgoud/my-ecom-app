@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./ProductListCard.css";
 import { useData } from "../../context/DataContext";
+import { NavLink } from "react-router-dom";
 
 const ProductListCard = ({ item }) => {
   const { wishUpdate } = useData();
@@ -23,10 +24,13 @@ const ProductListCard = ({ item }) => {
           )}
         </button>
       </div>
-      <img src={item.image} alt="product image" />
+      <NavLink to={`/product/${item._id}`}>
+        <img src={item.image} alt="product image" />
+      </NavLink>
       <p className="item-name">{item.title}</p>
       <p className="price">Rs {item.price}</p>
       <p>Rating : {item.rating}</p>
+      <p>{item._id}</p>
       <button className="btn">Add to Cart</button>
     </div>
   );
