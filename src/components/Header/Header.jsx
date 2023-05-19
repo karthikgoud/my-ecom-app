@@ -36,7 +36,9 @@ const Header = () => {
         <input type="text" placeholder="Search..." />
       </div>
       <div className="nav-right-container">
-        <button className="btn-login">Login</button>
+        <NavLink to="/login">
+          <button className="btn-login">Login</button>
+        </NavLink>
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
           <FontAwesomeIcon
             icon={faHouse}
