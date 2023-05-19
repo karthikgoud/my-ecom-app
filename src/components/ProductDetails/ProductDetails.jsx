@@ -1,19 +1,29 @@
-import { useData } from "../../context/DataContext";
-import Header from "../Header/Header";
+import { useEffect, useState } from "react";
 import "./ProductDetails.css";
 import { NavLink, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  console.log(productId);
+  // console.log(productId);
 
-  const { filterKids } = useData();
+  const [singleProduct, setSingleProduct] = useState({});
 
-  const selectedProduct = filterKids.filter((item) => item._id === productId);
-  console.log(selectedProduct[0]);
+  const gettingDetailByProductId = async () => {
+    try {
+      const response = await fetch(`/api/products/${productId}`);
+      const data = await response.json();
+      // console.log(data);
+      setSingleProduct(data.product);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const { title, price, image, categoryName, rating, isStarred } =
-    selectedProduct[0];
+  useEffect(() => {
+    gettingDetailByProductId();
+  }, [productId]);
+
+  // console.log("state", singleProduct);
 
   return (
     <div className="product-page">
@@ -21,9 +31,9 @@ const ProductDetails = () => {
         <h3>Back</h3>
       </NavLink>
       <div className="product-details-cont">
-        <img src={image} alt="product name" />
-        <h1>{title}</h1>
-        <h3>Price : Rs.{price}</h3>
+        <img src={singleProduct.image} alt="product name" />
+        <h1>{singleProduct.title}</h1>
+        <h3>Price : Rs.{singleProduct.price}</h3>
       </div>
     </div>
   );
