@@ -13,7 +13,7 @@ const ProductListCard = ({ item }) => {
     <div className="product-card-container">
       <div className="heart" onClick={() => wishUpdate(item._id)}>
         <button>
-          {item.isStarred ? (
+          {item.isWished ? (
             <FontAwesomeIcon
               icon={faHeart}
               style={{ color: "#f71839" }}

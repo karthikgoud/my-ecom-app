@@ -79,7 +79,7 @@ export const DataProvider = ({ children }) => {
 
   function wishUpdate(id) {
     const wishUpdate = [...data].map((item) =>
-      item._id === id ? { ...item, isStarred: !item.isStarred } : item
+      item._id === id ? { ...item, isWished: !item.isWished } : item
     );
     setData(wishUpdate);
   }

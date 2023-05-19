@@ -13,7 +13,7 @@ export const products = [
     image: "/images/jacket-2.jpg",
     categoryName: "Men",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -22,7 +22,7 @@ export const products = [
     image: "/images/jacket-2.jpg",
     categoryName: "Men",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -31,7 +31,7 @@ export const products = [
     image: "/images/jacket-2.jpg",
     categoryName: "Men",
     rating: 2,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -40,7 +40,7 @@ export const products = [
     image: "/images/jacket-2.jpg",
     categoryName: "Men",
     rating: 5,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -49,7 +49,7 @@ export const products = [
     image: "/images/women-dress-1.jpg",
     categoryName: "Women",
     rating: 3,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -58,7 +58,7 @@ export const products = [
     image: "/images/women-dress-1.jpg",
     categoryName: "Women",
     rating: 2,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -67,7 +67,7 @@ export const products = [
     image: "/images/women-dress-1.jpg",
     categoryName: "Women",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -76,7 +76,7 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 3,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -85,7 +85,7 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -94,7 +94,7 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -103,7 +103,7 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -112,7 +112,7 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
   {
     _id: uuid(),
@@ -121,6 +121,6 @@ export const products = [
     image: "/images/kid-dress.jpg",
     categoryName: "Kids",
     rating: 4,
-    isStarred: false,
+    isWished: false,
   },
 ];
