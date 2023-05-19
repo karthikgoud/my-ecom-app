@@ -1,15 +1,16 @@
-import "./LoginPage.css";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
+// import "./SignUpPage.css";
+import "./LoginPage.css";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <div>
       <Header />
       <div className="login-cont">
         <div className="login-card">
-          <h2>Login</h2>
+          <h2>SignUp</h2>
           <div className="input-email">
             <label htmlFor="email">Email address</label>
             <input
@@ -31,14 +32,14 @@ const LoginPage = () => {
           <div className="forgot-cont">
             <div>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" /> Remember me
+                <input type="checkbox" name="" id="" /> I accept all Terms and
+                Conditions
               </label>
             </div>
-            <div className="forgot-password">Forgot your password?</div>
           </div>
-          <button className="login-btn">Login</button>
-          <a className="create-new-acc" href="/signup">
-            Create new account
+          <button className="login-btn">Create New Account</button>
+          <a className="create-new-acc" href="/login">
+            Already have account
             <FontAwesomeIcon
               icon={faAngleRight}
               size="xl"
@@ -51,4 +52,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

@@ -1,0 +1,62 @@
+.login-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: #f7f7f7;
+}
+
+.login-card {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 0rem 4rem 4rem 4rem;
+  gap: 1rem;
+}
+
+.input-email,
+.input-password {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.forgot-cont {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.8rem;
+  align-items: baseline;
+}
+
+input {
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #9a9a9a;
+}
+
+.login-btn {
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  background-color: #3b82f6;
+}
+
+.forgot-password {
+  color: #3b82f6;
+}
+
+.create-new-acc {
+  color: black;
+  display: flex;
+  gap: 1rem;
+  text-decoration: none;
+}
