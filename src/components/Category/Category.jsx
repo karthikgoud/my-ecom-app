@@ -1,13 +1,18 @@
+import { useData } from "../../context/DataContext";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import "./Category.css";
 
 const Category = () => {
+  const { category } = useData();
   return (
     <div className="category-container">
-      <CategoryCard type="Men" id="1" />
-      <CategoryCard type="Women" id="2" />
-      <CategoryCard type="Kids" id="3" />
-      <CategoryCard type="Mobiles" id="4" />
+      {category.map((item) => (
+        <CategoryCard
+          key={item.categoryName}
+          text={item.categoryName}
+          type={item.type}
+        />
+      ))}
     </div>
   );
 };

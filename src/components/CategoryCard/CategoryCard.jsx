@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 import "./CategoryCard.css";
+import { useData } from "../../context/DataContext";
 
-const CategoryCard = ({ type, id }) => {
+const CategoryCard = ({ text, type }) => {
+  const { dispatch } = useData();
+
   return (
-    <NavLink to={`/product/${id}`}>
+    <NavLink to={`/product`} onClick={() => dispatch({ type })}>
       <div className="category-card-container">
-        <p>{type}</p>
+        <p>{text}</p>
       </div>
     </NavLink>
   );

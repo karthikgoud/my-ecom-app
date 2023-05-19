@@ -4,10 +4,13 @@ import ProductListCard from "../ProductListCard/ProductListCard";
 import Filters from "../Filters-component/Filters";
 
 import "./ProductListing.css";
+import { useData } from "../../context/DataContext";
 
 const ProductListing = () => {
   const { productId } = useParams();
-  console.log(productId);
+  // console.log(productId);
+
+  const { filterKids } = useData();
 
   return (
     <div>
@@ -15,16 +18,9 @@ const ProductListing = () => {
       <div className="filter-main-container">
         <Filters />
         <div className="productlist-container">
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
-          <ProductListCard />
+          {filterKids?.map((item) => (
+            <ProductListCard key={item._id} item={item} />
+          ))}
         </div>
       </div>
     </div>

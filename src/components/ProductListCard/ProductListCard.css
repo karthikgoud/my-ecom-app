@@ -1,6 +1,8 @@
 .product-card-container {
   width: 170px;
+  height: 300px;
   position: relative;
+  margin: 1rem 0;
 }
 
 button {
@@ -47,6 +49,6 @@ button {
   height: 30px;
   position: absolute;
   background-color: white;
-  right: 10px;
-  top: 10px;
+  right: 8px;
+  top: 6px;
 }

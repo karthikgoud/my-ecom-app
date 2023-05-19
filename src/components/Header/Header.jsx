@@ -8,11 +8,18 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useData } from "../../context/DataContext";
 
 const Header = () => {
+  const { dispatch } = useData();
+
   return (
     <nav className="nav-container">
-      <NavLink to="/" className="logo-container">
+      <NavLink
+        to="/"
+        className="logo-container"
+        onClick={() => dispatch({ type: "RESET" })}
+      >
         <img
           className="logo"
           src="/images/allinone-logo-crop.jpeg"
@@ -30,7 +37,7 @@ const Header = () => {
       </div>
       <div className="nav-right-container">
         <button className="btn-login">Login</button>
-        <NavLink to="/">
+        <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
           <FontAwesomeIcon icon={faHouse} style={{ color: "#999a9a" }} />
         </NavLink>
         <div className="wishlist-box">
