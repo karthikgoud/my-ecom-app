@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import {
   faHouse,
   faMagnifyingGlass,
-  faHeart,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 
 const Header = () => {
   const { dispatch } = useData();
@@ -38,12 +38,20 @@ const Header = () => {
       <div className="nav-right-container">
         <button className="btn-login">Login</button>
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
-          <FontAwesomeIcon icon={faHouse} style={{ color: "#999a9a" }} />
+          <FontAwesomeIcon
+            icon={faHouse}
+            size="xl"
+            style={{ color: "#999a9a" }}
+          />
         </NavLink>
         <div className="wishlist-box">
           <span className="red-circle wish-counter">0</span>
           <NavLink to="/wishlist">
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#999a9a" }} />
+            <FontAwesomeIcon
+              icon={faHeartRegular}
+              size="xl"
+              style={{ color: "#999a9a" }}
+            />
           </NavLink>
         </div>
         <div className="wishlist-box">
@@ -51,6 +59,7 @@ const Header = () => {
           <NavLink className="cart-container" to="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}
+              size="xl"
               style={{ color: "#999a9a" }}
             />
             <p>Cart</p>

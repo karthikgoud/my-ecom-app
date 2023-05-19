@@ -1,0 +1,18 @@
+.cart-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #f7f7f7;
+  padding: 1rem 2rem;
+}
+
+.cart-title {
+  text-align: center;
+}
+.cart-card-cont {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+}

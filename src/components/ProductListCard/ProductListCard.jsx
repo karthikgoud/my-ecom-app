@@ -1,4 +1,5 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./ProductListCard.css";
@@ -12,9 +13,13 @@ const ProductListCard = ({ item }) => {
       <div className="heart" onClick={() => wishUpdate(item._id)}>
         <button>
           {item.isStarred ? (
-            <FontAwesomeIcon icon={faHeart} style={{ color: "#f71839" }} />
+            <FontAwesomeIcon
+              icon={faHeart}
+              style={{ color: "#f71839" }}
+              size="xl"
+            />
           ) : (
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faHeartRegular} size="xl" />
           )}
         </button>
       </div>

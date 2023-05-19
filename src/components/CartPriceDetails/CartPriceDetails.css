@@ -1,0 +1,32 @@
+.cart-price-details-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  width: 400px;
+}
+.cart-price-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-price-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-cont {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.btn-order {
+  background: #3b82f6;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  /* height: 0.8rem; */
+}
