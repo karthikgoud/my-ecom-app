@@ -50,6 +50,10 @@ input {
   background-color: #3b82f6;
 }
 
+.login-btn:hover {
+  cursor: pointer;
+}
+
 .forgot-password {
   color: #3b82f6;
 }

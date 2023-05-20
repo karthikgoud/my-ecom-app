@@ -9,9 +9,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
   const { dispatch } = useData();
+
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   return (
     <nav className="nav-container">
@@ -36,9 +39,16 @@ const Header = () => {
         <input type="text" placeholder="Search..." />
       </div>
       <div className="nav-right-container">
-        <NavLink to="/login">
-          <button className="btn-login">Login</button>
-        </NavLink>
+        {!isLoggedIn && (
+          <NavLink to="/login">
+            <button className="btn-login">Login</button>
+          </NavLink>
+        )}
+        {isLoggedIn && (
+          <button className="btn-login" onClick={() => setIsLoggedIn(false)}>
+            Logout
+          </button>
+        )}
         <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
           <FontAwesomeIcon
             icon={faHouse}

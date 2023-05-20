@@ -81,6 +81,10 @@ nav input {
   border-radius: 3px;
 }
 
+.btn-login:hover {
+  cursor: pointer;
+}
+
 .wishlist-box {
   position: relative;
 }

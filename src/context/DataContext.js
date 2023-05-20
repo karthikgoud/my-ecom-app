@@ -1,4 +1,3 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import {
   createContext,
   useContext,
@@ -49,6 +48,7 @@ export const DataProvider = ({ children }) => {
   });
   const [data, setData] = useState([]);
   const [category, setCategory] = useState([]);
+  const [cart, setCart] = useState(null);
 
   const getData = async () => {
     try {

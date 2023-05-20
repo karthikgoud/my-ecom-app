@@ -2,8 +2,21 @@ import "./LoginPage.css";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation, useNavigate } from "react-router";
 
 const LoginPage = () => {
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+
+  const handleLogin = () => {
+    setIsLoggedIn(!isLoggedIn);
+    navigate(location?.state?.from?.pathname);
+  };
+
   return (
     <div>
       <Header />
@@ -36,7 +49,9 @@ const LoginPage = () => {
             </div>
             <div className="forgot-password">Forgot your password?</div>
           </div>
-          <button className="login-btn">Login</button>
+          <button className="login-btn" onClick={handleLogin}>
+            {isLoggedIn ? "Logout" : "Login"}
+          </button>
           <a className="create-new-acc" href="/signup">
             Create new account
             <FontAwesomeIcon

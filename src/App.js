@@ -8,19 +8,38 @@ import Mockman from "mockman-js";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
+import RequiresAuth from "./Auth/RequiresAuth";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+  const { isLoggedIn } = useAuth();
+
   return (
     <div className="app-container">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductListing />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/mockman" element={<Mockman />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<LoginPage />} />
+        {!isLoggedIn && <Route path="/login" element={<LoginPage />} />}
+        {isLoggedIn && <Route path="/login" element={<Cart />} />}
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route
+          path="/wishlist"
+          element={
+            <RequiresAuth>
+              <WishList />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <RequiresAuth>
+              <Cart />
+            </RequiresAuth>
+          }
+        />
+        <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
   );
