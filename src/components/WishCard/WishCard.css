@@ -1,16 +1,16 @@
-.product-card-container {
+.wish-card-container {
   width: 170px;
   height: 300px;
   position: relative;
   margin: 1rem 0;
 }
 
-button {
-  all: unset;
+.wish-card-container img {
+  width: 100%;
 }
 
-.product-card-container img {
-  width: 100%;
+.wish-card-container img:hover {
+  cursor: pointer;
 }
 
 .item-name {
@@ -36,10 +36,6 @@ button {
   font-size: 0.8rem;
 }
 
-.heart:hover {
-  cursor: pointer;
-}
-
 .heart {
   display: flex;
   justify-content: center;
@@ -51,4 +47,8 @@ button {
   background-color: white;
   right: 8px;
   top: 6px;
+}
+
+.heart:hover {
+  cursor: pointer;
 }

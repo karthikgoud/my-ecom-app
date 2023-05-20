@@ -6,6 +6,8 @@ import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import { WishProvider } from "./context/WishContext";
 
 // Call make Server
 makeServer();
@@ -15,7 +17,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <DataProvider>
         <AuthProvider>
-          <App />
+          <CartProvider>
+            <WishProvider>
+              <App />
+            </WishProvider>
+          </CartProvider>
         </AuthProvider>
       </DataProvider>
     </BrowserRouter>

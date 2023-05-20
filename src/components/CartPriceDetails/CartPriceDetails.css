@@ -5,6 +5,7 @@
   padding: 1rem;
   background: #fff;
   width: 400px;
+  height: max-content;
 }
 .cart-price-list {
   display: flex;

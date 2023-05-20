@@ -5,14 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ProductListCard.css";
 import { useData } from "../../context/DataContext";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+import { useWish } from "../../context/WishContext";
 
 const ProductListCard = ({ item }) => {
   const { wishUpdate } = useData();
 
+  const { addToCart } = useCart();
+
+  const { addWish } = useWish();
+
   return (
     <div className="product-card-container">
       <div className="heart" onClick={() => wishUpdate(item._id)}>
-        <button>
+        <button onClick={() => addWish(item)}>
           {item.isWished ? (
             <FontAwesomeIcon
               icon={faHeart}
@@ -29,9 +35,10 @@ const ProductListCard = ({ item }) => {
       </NavLink>
       <p className="item-name">{item.title}</p>
       <p className="price">Rs {item.price}</p>
-      <p>Rating : {item.rating}</p>
-      <p>{item._id}</p>
-      <button className="btn">Add to Cart</button>
+      <p className="item-name">Rating : {item.rating}</p>
+      <button className="btn" onClick={() => addToCart(item)}>
+        Add to Cart
+      </button>
     </div>
   );
 };

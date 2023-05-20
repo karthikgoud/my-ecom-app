@@ -6,13 +6,19 @@
   padding: 1rem 2rem;
 }
 
+.card-section {
+  display: flex;
+}
+
 .cart-title {
   text-align: center;
 }
+
 .cart-card-cont {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   gap: 0;
+  flex-direction: column;
 }

@@ -10,11 +10,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext";
+import { useWish } from "../../context/WishContext";
 
 const Header = () => {
   const { dispatch } = useData();
 
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  const { cart } = useCart();
+  const { wish } = useWish();
 
   return (
     <nav className="nav-container">
@@ -57,7 +62,7 @@ const Header = () => {
           />
         </NavLink>
         <div className="wishlist-box">
-          <span className="red-circle wish-counter">0</span>
+          <span className="red-circle wish-counter">{wish?.length}</span>
           <NavLink to="/wishlist">
             <FontAwesomeIcon
               icon={faHeartRegular}
@@ -67,7 +72,7 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="wishlist-box">
-          <span className="red-circle cart-counter">0</span>
+          <span className="red-circle cart-counter">{cart?.length}</span>
           <NavLink className="cart-container" to="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}
