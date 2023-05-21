@@ -12,14 +12,17 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWish } from "../../context/WishContext";
+import { useState } from "react";
 
 const Header = () => {
-  const { dispatch } = useData();
+  const { dispatch, state } = useData();
 
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const { cart } = useCart();
   const { wish } = useWish();
+
+  const [searchText, setSearchText] = useState("");
 
   return (
     <nav className="nav-container">
@@ -41,7 +44,18 @@ const Header = () => {
           icon={faMagnifyingGlass}
           style={{ color: "#999a9a" }}
         />
-        <input type="text" placeholder="Search..." />
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) =>
+            dispatch({ type: "SEARCH_BOX", payLoad: e.target.value })
+          }
+        />
+        {/* <button
+          onClick={() => dispatch({ type: "SEARCH_BOX", payload: searchText })}
+        >
+          Search
+        </button> */}
       </div>
       <div className="nav-right-container">
         {!isLoggedIn && (

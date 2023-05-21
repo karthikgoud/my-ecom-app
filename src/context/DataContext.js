@@ -24,6 +24,9 @@ const reducer = (state, action) => {
       return { ...state, starRating: action.payLoad };
     case "RANGE_FILTER":
       return { ...state, rangeValue: action.payLoad };
+    case "SEARCH_BOX":
+      console.log(action);
+      return { ...state, searchValue: action.payLoad };
     case "RESET":
       return {
         ...state,
@@ -33,6 +36,7 @@ const reducer = (state, action) => {
         menCategory: false,
         womenCategory: false,
         kidsCategory: false,
+        searchValue: null,
       };
     default:
       return state;
@@ -47,6 +51,7 @@ export const DataProvider = ({ children }) => {
     menCategory: false,
     womenCategory: false,
     kidsCategory: false,
+    searchValue: null,
   });
   const [data, setData] = useState([]);
   const [category, setCategory] = useState([]);
@@ -95,14 +100,23 @@ export const DataProvider = ({ children }) => {
         )
       : data;
 
+  //search box
+
+  const filterText =
+    state.searchValue !== null
+      ? sortedData.filter((item) =>
+          item.title.toLowerCase().includes(state.searchValue.toLowerCase())
+        )
+      : sortedData;
+
   // filter range
 
   const rangeFilter =
     state.rangeValue !== null
-      ? sortedData.filter(
+      ? filterText.filter(
           (item) => Number(item.price) <= Number(state.rangeValue)
         )
-      : sortedData;
+      : filterText;
 
   // rating filter data : radio
 
