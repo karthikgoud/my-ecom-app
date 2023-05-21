@@ -20,11 +20,15 @@ const Filters = () => {
         <p className="title">Price</p>
         <input
           type="range"
-          min="300"
+          min="0"
           max="5000"
           step="100"
-          onChange={(e) => console.log(e.target.value)}
+          defaultValue={0}
+          onChange={(e) =>
+            dispatch({ type: "RANGE_FILTER", payLoad: e.target.value })
+          }
         />
+        <input type="text" value={state.rangeValue} />
       </div>
       <div className="flex">
         <p className="title">Category</p>

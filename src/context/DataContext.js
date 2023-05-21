@@ -22,12 +22,14 @@ const reducer = (state, action) => {
       return { ...state, kidsCategory: !state.kidsCategory };
     case "FILTER-RATING":
       return { ...state, starRating: action.payLoad };
+    case "RANGE_FILTER":
+      return { ...state, rangeValue: action.payLoad };
     case "RESET":
       return {
         ...state,
         sort: null,
         starRating: null,
-        range: null,
+        rangeValue: null,
         menCategory: false,
         womenCategory: false,
         kidsCategory: false,
@@ -41,7 +43,7 @@ export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     sort: null,
     starRating: null,
-    range: null,
+    rangeValue: null,
     menCategory: false,
     womenCategory: false,
     kidsCategory: false,
@@ -93,12 +95,21 @@ export const DataProvider = ({ children }) => {
         )
       : data;
 
+  // filter range
+
+  const rangeFilter =
+    state.rangeValue !== null
+      ? sortedData.filter(
+          (item) => Number(item.price) <= Number(state.rangeValue)
+        )
+      : sortedData;
+
   // rating filter data : radio
 
   const filterRating =
     state.starRating !== null
-      ? sortedData.filter((item) => item.rating >= state.starRating)
-      : sortedData;
+      ? rangeFilter.filter((item) => item.rating >= state.starRating)
+      : rangeFilter;
 
   // Filter data : checkbox
 
