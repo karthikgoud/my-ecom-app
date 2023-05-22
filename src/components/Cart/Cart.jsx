@@ -23,7 +23,7 @@ const Cart = () => {
     0
   );
 
-  const grandTotal = itemPriceTotal + itemDiscount + deliveryTotal;
+  const grandTotal = itemPriceTotal - itemDiscount + deliveryTotal;
 
   const totalItems = cart.reduce((acc, cur) => acc + cur.qty, 0);
 

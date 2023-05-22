@@ -15,7 +15,7 @@ const CartPriceDetails = ({ cartTotal }) => {
       </div>
       <div className="cart-price-list-item">
         <p>Discount</p>
-        <p>₹{cartTotal.itemDiscount}</p>
+        <p>-₹{cartTotal.itemDiscount}</p>
       </div>
       <div className="cart-price-list-item">
         <p>Delivery charges </p>
