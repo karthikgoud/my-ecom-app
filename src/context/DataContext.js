@@ -68,6 +68,7 @@ export const DataProvider = ({ children }) => {
   const [category, setCategory] = useState([]);
   const [cart, setCart] = useState([]);
   const [wish, setWish] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   // const [cartState, cartDispatch] = useReducer(cartReducer, []);
 
@@ -86,6 +87,7 @@ export const DataProvider = ({ children }) => {
       const res = await fetch("/api/categories");
       const myCategory = await res.json();
       setCategory(myCategory.categories);
+      setLoader(false);
     } catch (e) {
       console.error(e);
     }
@@ -174,6 +176,7 @@ export const DataProvider = ({ children }) => {
         setCart,
         wish,
         setWish,
+        loader,
       }}
     >
       {children}

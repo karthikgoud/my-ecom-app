@@ -3,14 +3,24 @@ import Header from "../Header/Header";
 import HeroCarousel from "../HeroCarousel/HeroCarousel";
 import NewArrivals from "../NewArrivals/NewArrivals";
 import "./Home.css";
+import Loader from "../Loader/Loader";
+import { useData } from "../../context/DataContext";
 
 const Home = () => {
+  const { loader } = useData();
+
   return (
-    <div>
-      <Header />
-      <Category />
-      <HeroCarousel />
-      <NewArrivals />
+    <div className="home-cont">
+      {loader ? (
+        <Loader />
+      ) : (
+        <div>
+          <Header />
+          <Category />
+          <HeroCarousel />
+          <NewArrivals />
+        </div>
+      )}
     </div>
   );
 };
