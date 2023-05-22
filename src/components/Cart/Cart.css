@@ -22,3 +22,7 @@
   gap: 0;
   flex-direction: column;
 }
+
+.cart-msg {
+  width: 100%;
+}

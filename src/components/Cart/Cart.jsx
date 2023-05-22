@@ -50,7 +50,9 @@ const Cart = () => {
           <h3 className="cart-title">My Cart({cart?.length})</h3>
         </div>
         <div className="card-section">
-          {cart?.length === 0 && <h1>No items in cart</h1>}
+          {cart?.length === 0 && (
+            <h1 className="cart-msg">Add Items To Cart</h1>
+          )}
           <div className="cart-card-cont">
             {cart?.map((item) => (
               <CartPageCard item={item} />
