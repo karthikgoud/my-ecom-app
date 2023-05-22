@@ -1,29 +1,33 @@
 import "./CartPriceDetails.css";
 
-const CartPriceDetails = () => {
+const CartPriceDetails = ({ cartTotal }) => {
+  // console.log(cartTotal);
   return (
     <div className="cart-price-details-cont">
       <h4>Price Details</h4>
       <hr />
       <div className="cart-price-list-item">
-        <p>price (1 item)</p>
-        <p>₹2000</p>
+        <p>
+          price ({cartTotal.totalItems}{" "}
+          {cartTotal.totalItems > 1 ? "items" : "item"} )
+        </p>
+        <p>₹{cartTotal.itemPriceTotal}</p>
       </div>
       <div className="cart-price-list-item">
         <p>Discount</p>
-        <p>-₹1000</p>
+        <p>₹{cartTotal.itemDiscount}</p>
       </div>
       <div className="cart-price-list-item">
         <p>Delivery charges </p>
-        <p>₹499</p>
+        <p>₹{cartTotal.deliveryTotal}</p>
       </div>
       <hr />
       <div className="total-cont">
         <div>Total Amount</div>
-        <div>₹2499</div>
+        <div>₹{cartTotal.grandTotal}</div>
       </div>
       <hr />
-      <p>You will save ₹1000 on this order</p>
+      <p>You will save ₹{cartTotal.itemDiscount} on this order</p>
       <button className="btn-order">Place Order</button>
     </div>
   );

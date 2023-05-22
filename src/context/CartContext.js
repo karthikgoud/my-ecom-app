@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useData } from "./DataContext";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const { cart, setCart, setWish, toggleAddToCartBtn } = useData();
 
   const getLogin = async () => {
     try {
@@ -65,9 +66,99 @@ export const CartProvider = ({ children }) => {
       const addCart = await res.json();
       setCart(addCart.cart); // adds product to cart array
       // console.log("added cart", addCart.cart);
+      toggleAddToCartBtn(item._id);
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const removeFromCart = async (item) => {
+    try {
+      const keyToken = localStorage.getItem("token");
+
+      const res = await fetch(`/api/user/cart/${item._id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: keyToken,
+        },
+      });
+
+      const updatedCart = await res.json();
+      setCart(updatedCart.cart);
+      toggleAddToCartBtn(item._id);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const addWishFromCart = async (item) => {
+    try {
+      const keyToken = localStorage.getItem("token");
+
+      const data = {
+        product: item,
+      };
+
+      const res = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: {
+          authorization: keyToken,
+        },
+        body: JSON.stringify(data),
+      });
+      const wishData = await res.json();
+      // console.log("from context", wishData.wishlist);
+      setWish(wishData.wishlist);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const addOne = async (item) => {
+    const keyToken = localStorage.getItem("token");
+
+    const bodySend = {
+      action: {
+        type: "increment",
+      },
+    };
+
+    const res = await fetch(`/api/user/cart/${item._id}`, {
+      method: "POST",
+      headers: {
+        authorization: keyToken,
+      },
+      body: JSON.stringify(bodySend),
+    });
+
+    const newCart = await res.json();
+    setCart(newCart.cart);
+  };
+
+  const removeOne = async (item) => {
+    const keyToken = localStorage.getItem("token");
+
+    const bodySend = {
+      action: {
+        type: "decrement",
+      },
+    };
+
+    const res = await fetch(`/api/user/cart/${item._id}`, {
+      method: "POST",
+      headers: {
+        authorization: keyToken,
+      },
+      body: JSON.stringify(bodySend),
+    });
+
+    const newCart = await res.json();
+    setCart(newCart.cart);
+  };
+
+  const delCartMoveToWish = (item) => {
+    addWishFromCart(item);
+    removeFromCart(item);
   };
 
   useEffect(() => {
@@ -76,7 +167,18 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart, getLogin }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+        addToCart,
+        getLogin,
+        removeFromCart,
+        delCartMoveToWish,
+        removeOne,
+        addOne,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

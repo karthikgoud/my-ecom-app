@@ -1,6 +1,9 @@
+import { useCart } from "../../context/CartContext";
 import "./CartPageCard.css";
 
 const CartPageCard = ({ item }) => {
+  const { removeFromCart, delCartMoveToWish, removeOne, addOne } = useCart();
+
   return (
     <div className="cart-card-container">
       <div className="cart-card-img">
@@ -20,15 +23,26 @@ const CartPageCard = ({ item }) => {
             <p className="cart-card-quantity-cont">
               Quantity:
               <div className="cart-card-quantity">
-                <div>-</div>
-                <input type="text" value={1} />
-                <div>+</div>
+                {item.qty > 0 && <div onClick={() => removeOne(item)}>-</div>}
+                {item.qty < 1 && <div>-</div>}
+                <input type="text" value={item.qty} />
+                <div onClick={() => addOne(item)}>+</div>
               </div>
             </p>
           </div>
         </div>
-        <button className="cart-card-btn remove">Remove from Cart</button>
-        <button className="cart-card-btn move">Move to WishList</button>
+        <button
+          className="cart-card-btn remove"
+          onClick={() => removeFromCart(item)}
+        >
+          Remove from Cart
+        </button>
+        <button
+          className="cart-card-btn move"
+          onClick={() => delCartMoveToWish(item)}
+        >
+          Move to WishList
+        </button>
       </div>
     </div>
   );

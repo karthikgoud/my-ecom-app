@@ -56,3 +56,16 @@ button {
   right: 8px;
   top: 6px;
 }
+
+.cart-link {
+  width: 100%;
+  padding: 0.3rem 0;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.8rem;
+  display: inline-block;
+  text-decoration: none;
+}

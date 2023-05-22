@@ -13,22 +13,25 @@ const ProductListCard = ({ item }) => {
 
   const { addToCart } = useCart();
 
-  const { addWish } = useWish();
+  const { addWish, deleteWish } = useWish();
 
   return (
     <div className="product-card-container">
       <div className="heart" onClick={() => wishUpdate(item._id)}>
-        <button onClick={() => addWish(item)}>
-          {item.isWished ? (
+        {item.isWished && (
+          <button onClick={() => deleteWish(item._id)}>
             <FontAwesomeIcon
               icon={faHeart}
               style={{ color: "#f71839" }}
               size="xl"
             />
-          ) : (
+          </button>
+        )}
+        {!item.isWished && (
+          <button onClick={() => addWish(item)}>
             <FontAwesomeIcon icon={faHeartRegular} size="xl" />
-          )}
-        </button>
+          </button>
+        )}
       </div>
       <NavLink to={`/product/${item._id}`}>
         <img src={item.image} alt="product image" />
@@ -36,9 +39,16 @@ const ProductListCard = ({ item }) => {
       <p className="item-name">{item.title}</p>
       <p className="price">Rs {item.price}</p>
       <p className="item-name">Rating : {item.rating}</p>
-      <button className="btn" onClick={() => addToCart(item)}>
-        Add to Cart
-      </button>
+      {!item.isCarted && (
+        <button className="btn" onClick={() => addToCart(item)}>
+          Add to Cart
+        </button>
+      )}
+      {item.isCarted && (
+        <NavLink className="cart-link" to="/cart">
+          Go to Cart
+        </NavLink>
+      )}
     </div>
   );
 };

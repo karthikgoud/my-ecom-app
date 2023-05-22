@@ -82,6 +82,10 @@
   border: none;
 }
 
+.cart-card-btn:hover {
+  cursor: pointer;
+}
+
 .remove {
   background-color: #9a9a9a;
   color: white;

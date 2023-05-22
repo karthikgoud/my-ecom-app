@@ -5,7 +5,7 @@ import { useCart } from "./CartContext";
 export const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-  const [wish, setWish] = useState([]);
+  const { wish, setWish } = useData();
 
   const { addToCart } = useCart();
 

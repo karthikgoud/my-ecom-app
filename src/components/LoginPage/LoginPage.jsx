@@ -9,7 +9,7 @@ import { useCart } from "../../context/CartContext";
 const LoginPage = () => {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
-  const { getLogin } = useCart();
+  // const { getLogin } = useCart();
 
   const navigate = useNavigate();
   const location = useLocation();

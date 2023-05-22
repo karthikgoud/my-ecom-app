@@ -8,6 +8,17 @@ import {
 
 export const DataContext = createContext();
 
+// const cartReducer = (state, action) => {
+//   switch (action.type) {
+//     case "INCREMENT":
+//       console.log(action);
+//     case "DECREMENT":
+//       return [...state, action.payLoad];
+//     default:
+//       return state;
+//   }
+// };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "SORT-HIGH-TO-LOW":
@@ -55,7 +66,10 @@ export const DataProvider = ({ children }) => {
   });
   const [data, setData] = useState([]);
   const [category, setCategory] = useState([]);
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [wish, setWish] = useState([]);
+
+  // const [cartState, cartDispatch] = useReducer(cartReducer, []);
 
   const getData = async () => {
     try {
@@ -89,6 +103,14 @@ export const DataProvider = ({ children }) => {
       item._id === id ? { ...item, isWished: !item.isWished } : item
     );
     setData(wishUpdate);
+  }
+
+  function toggleAddToCartBtn(id) {
+    console.log("id", id);
+    const carted = [...data].map((item) =>
+      item._id === id ? { ...item, isCarted: !item.isCarted } : item
+    );
+    setData(carted);
   }
 
   // sorted data : radio
@@ -141,7 +163,18 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ filterKids, category, state, dispatch, wishUpdate }}
+      value={{
+        filterKids,
+        category,
+        state,
+        dispatch,
+        wishUpdate,
+        toggleAddToCartBtn,
+        cart,
+        setCart,
+        wish,
+        setWish,
+      }}
     >
       {children}
     </DataContext.Provider>
