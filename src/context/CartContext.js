@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useData } from "./DataContext";
+import { ToastHandler } from "../components/Toast/Toast";
 
 export const CartContext = createContext();
 
@@ -67,6 +68,7 @@ export const CartProvider = ({ children }) => {
       setCart(addCart.cart); // adds product to cart array
       // console.log("added cart", addCart.cart);
       toggleAddToCartBtn(item._id);
+      ToastHandler("success", "Added to Cart");
     } catch (e) {
       console.log(e);
     }
@@ -86,6 +88,7 @@ export const CartProvider = ({ children }) => {
       const updatedCart = await res.json();
       setCart(updatedCart.cart);
       toggleAddToCartBtn(item._id);
+      ToastHandler("warn", "Removed from Cart");
     } catch (e) {
       console.log(e);
     }
@@ -109,6 +112,7 @@ export const CartProvider = ({ children }) => {
       const wishData = await res.json();
       // console.log("from context", wishData.wishlist);
       setWish(wishData.wishlist);
+      ToastHandler("success", "Added to WishList");
     } catch (e) {
       console.error(e);
     }

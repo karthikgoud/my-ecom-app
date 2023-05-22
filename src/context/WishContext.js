@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useData } from "./DataContext";
 import { useCart } from "./CartContext";
+import { ToastHandler } from "../components/Toast/Toast";
 
 export const WishContext = createContext();
 
@@ -47,6 +48,7 @@ export const WishProvider = ({ children }) => {
       const wishData = await res.json();
       // console.log("from context", wishData.wishlist);
       setWish(wishData.wishlist);
+      ToastHandler("success", "Added to WishList");
     } catch (e) {
       console.error(e);
     }
@@ -64,6 +66,7 @@ export const WishProvider = ({ children }) => {
       const wishData = await res.json();
       wishUpdate(id);
       setWish(wishData.wishlist);
+      ToastHandler("warn", "Removed from WishList");
     } catch (e) {
       console.log(e);
     }

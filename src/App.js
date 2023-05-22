@@ -10,12 +10,24 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import RequiresAuth from "./Auth/RequiresAuth";
 import { useAuth } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { isLoggedIn } = useAuth();
 
   return (
     <div className="app-container">
+      <ToastContainer
+        position="bottom-right"
+        autoClose={false}
+        newestOnTop={false}
+        closeOnClick
+        theme="colored"
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductListing />} />
