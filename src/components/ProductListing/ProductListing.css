@@ -10,3 +10,8 @@
   gap: 2rem;
   flex-wrap: wrap;
 }
+
+.loader-cont {
+  width: 100%;
+  display: flex;
+}
