@@ -4,11 +4,11 @@ const CartPriceDetails = ({ cartTotal }) => {
   // console.log(cartTotal);
   return (
     <div className="cart-price-details-cont">
-      <h4>Price Details</h4>
+      <h4>Cart Price Details</h4>
       <hr />
       <div className="cart-price-list-item">
         <p>
-          price ({cartTotal.totalItems}{" "}
+          Price ({cartTotal.totalItems}{" "}
           {cartTotal.totalItems > 1 ? "items" : "item"} )
         </p>
         <p>₹{cartTotal.itemPriceTotal}</p>

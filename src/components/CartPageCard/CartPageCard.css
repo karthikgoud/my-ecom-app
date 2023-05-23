@@ -50,15 +50,19 @@
 
 .cart-card-quantity-cont {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
 .cart-card-quantity {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.cart-card-quantity div {
+.cart-card-btn-round {
   height: 1.4rem;
   width: 1.4rem;
   border: 1px solid #9a9a9a;
@@ -68,9 +72,18 @@
   justify-content: center;
 }
 
+.cart-card-btn-round:hover {
+  cursor: pointer;
+}
+
 .cart-card-quantity input {
+  margin: 0 auto;
   width: 2rem;
   text-align: center;
+  height: max-content;
+}
+.price-strike {
+  text-decoration: line-through;
 }
 
 .cart-card-btn {

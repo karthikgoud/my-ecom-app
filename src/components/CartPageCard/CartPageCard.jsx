@@ -15,18 +15,32 @@ const CartPageCard = ({ item }) => {
           <div>
             <div className="cart-card-price">
               <h2>₹{item.disCountedPrice}</h2>
-              <h4>₹{item.price}</h4>
+              <h4 className="price-strike">₹{item.price}</h4>
             </div>
             <div className="cart-card-price">
-              <h4>{item.discount}</h4>
+              <h4>{item.discount} OFF</h4>
             </div>
             <p className="cart-card-quantity-cont">
               Quantity:
               <div className="cart-card-quantity">
-                {item.qty > 0 && <div onClick={() => removeOne(item)}>-</div>}
-                {item.qty < 1 && <div>-</div>}
+                {item.qty > 0 && (
+                  <button
+                    className="cart-card-btn-round"
+                    onClick={() => removeOne(item)}
+                  >
+                    -
+                  </button>
+                )}
+                {item.qty < 1 && (
+                  <button className="cart-card-btn-round">-</button>
+                )}
                 <input type="text" value={item.qty} />
-                <div onClick={() => addOne(item)}>+</div>
+                <button
+                  className="cart-card-btn-round"
+                  onClick={() => addOne(item)}
+                >
+                  +
+                </button>
               </div>
             </p>
           </div>
