@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isSignUp } = useAuth();
 
   return (
     <div className="app-container">
@@ -32,8 +32,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductListing />} />
         {!isLoggedIn && <Route path="/login" element={<LoginPage />} />}
-        {isLoggedIn && <Route path="/login" element={<Cart />} />}
-        <Route path="/signup" element={<SignUpPage />} />
+        {isLoggedIn && <Route path="/login" element={<ProductListing />} />}
+        {!isSignUp && <Route path="/signup" element={<SignUpPage />} />}
+        {isSignUp && <Route path="/signup" element={<ProductListing />} />}
         <Route path="/product/:productId" element={<ProductDetails />} />
         <Route
           path="/wishlist"

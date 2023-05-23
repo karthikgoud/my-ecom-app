@@ -7,27 +7,6 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const { cart, setCart, setWish, toggleAddToCartBtn } = useData();
 
-  const getLogin = async () => {
-    try {
-      const cred = {
-        email: "adarshbalika@gmail.com",
-        password: "adarshbalika",
-      };
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        body: JSON.stringify(cred),
-      });
-
-      const { encodedToken } = await res.json();
-
-      // console.log("encodedToken", encodedToken);
-
-      localStorage.setItem("token", encodedToken);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const getCart = async () => {
     try {
       const keyToken = localStorage.getItem("token");
@@ -42,7 +21,7 @@ export const CartProvider = ({ children }) => {
 
       const cartRes = await res.json();
       setCart(cartRes.cart); // sets cart to empty array
-      // console.log("initail cart", cartRes.cart);
+      // console.log("initail cart", cartRes);
     } catch (e) {
       console.log(e);
     }
@@ -166,7 +145,6 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getLogin();
     getCart();
   }, []);
 
@@ -176,7 +154,6 @@ export const CartProvider = ({ children }) => {
         cart,
         setCart,
         addToCart,
-        getLogin,
         removeFromCart,
         delCartMoveToWish,
         removeOne,
