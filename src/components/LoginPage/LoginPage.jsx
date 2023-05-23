@@ -50,7 +50,7 @@ const LoginPage = () => {
             <div className="forgot-password">Forgot your password?</div>
           </div>
           <button className="login-btn" onClick={handleLogin}>
-            {isLoggedIn ? "Logout" : "Login"}
+            {isLoggedIn ? "Logout" : "Login as Guest"}
           </button>
           <a className="create-new-acc" href="/signup">
             Create new account
