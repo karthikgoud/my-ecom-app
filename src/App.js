@@ -12,6 +12,7 @@ import RequiresAuth from "./Auth/RequiresAuth";
 import { useAuth } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
   const { isLoggedIn, isSignUp } = useAuth();
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductListing />} />
+        <Route path="/userprofile" element={<UserProfile />} />
         {!isLoggedIn && <Route path="/login" element={<LoginPage />} />}
         {isLoggedIn && <Route path="/login" element={<ProductListing />} />}
         {!isSignUp && <Route path="/signup" element={<SignUpPage />} />}

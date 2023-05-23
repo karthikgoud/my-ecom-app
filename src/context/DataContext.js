@@ -70,8 +70,6 @@ export const DataProvider = ({ children }) => {
   const [wish, setWish] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  // const [cartState, cartDispatch] = useReducer(cartReducer, []);
-
   const getData = async () => {
     try {
       const res = await fetch("/api/products");
