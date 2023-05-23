@@ -19,6 +19,11 @@ export const products = [
     discount: "50%",
     deliveryCharges: "150",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "L",
+    delivery: "in 2 days",
   },
   {
     _id: uuid(),
@@ -33,6 +38,11 @@ export const products = [
     discount: "20%",
     deliveryCharges: "100",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "S",
+    delivery: "in 3 days",
   },
   {
     _id: uuid(),
@@ -47,6 +57,11 @@ export const products = [
     discount: "15%",
     deliveryCharges: "120",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "s",
+    delivery: "in 5 days",
   },
 
   // ---------------------- women--------------------------
@@ -64,6 +79,11 @@ export const products = [
     discount: "50%",
     deliveryCharges: "250",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "M",
+    delivery: "in 3 days",
   },
   {
     _id: uuid(),
@@ -78,6 +98,11 @@ export const products = [
     discount: "20%",
     deliveryCharges: "200",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "S",
+    delivery: "in 2 days",
   },
   {
     _id: uuid(),
@@ -92,6 +117,11 @@ export const products = [
     discount: "23%",
     deliveryCharges: "175",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "L",
+    delivery: "in 4 days",
   },
   // ---------------- kids-------------------------
 
@@ -108,6 +138,11 @@ export const products = [
     discount: "50%",
     deliveryCharges: "100",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "M",
+    delivery: "in 1 days",
   },
   {
     _id: uuid(),
@@ -122,6 +157,11 @@ export const products = [
     discount: "15%",
     deliveryCharges: "75",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "S",
+    delivery: "in 7 days",
   },
   {
     _id: uuid(),
@@ -136,5 +176,10 @@ export const products = [
     discount: "10%",
     deliveryCharges: "100",
     isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "M",
+    delivery: "in 1 days",
   },
 ];
