@@ -2,10 +2,11 @@ import "./Header.css";
 import { NavLink } from "react-router-dom";
 
 import {
+  faListUl,
   faHouse,
   faMagnifyingGlass,
   faCartShopping,
-  faL,
+  faCircleUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
@@ -13,7 +14,6 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWish } from "../../context/WishContext";
-import { useState } from "react";
 
 const Header = () => {
   const { dispatch, state } = useData();
@@ -72,9 +72,9 @@ const Header = () => {
             Logout
           </button>
         )}
-        <NavLink to="/" onClick={() => dispatch({ type: "RESET" })}>
+        <NavLink to="/product" onClick={() => dispatch({ type: "RESET" })}>
           <FontAwesomeIcon
-            icon={faHouse}
+            icon={faListUl}
             size="xl"
             style={{ color: "#999a9a" }}
           />
@@ -97,9 +97,17 @@ const Header = () => {
               size="xl"
               style={{ color: "#999a9a" }}
             />
-            <p>Cart</p>
           </NavLink>
         </div>
+        {isLoggedIn && (
+          <NavLink to="/userprofile">
+            <FontAwesomeIcon
+              icon={faCircleUser}
+              size="xl"
+              style={{ color: "#999a9a" }}
+            />
+          </NavLink>
+        )}
       </div>
     </nav>
   );
