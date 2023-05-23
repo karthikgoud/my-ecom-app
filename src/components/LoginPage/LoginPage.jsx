@@ -4,17 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
-import { useCart } from "../../context/CartContext";
 
 const LoginPage = () => {
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
-
-  // const { getLogin } = useCart();
+  const { isLoggedIn, setIsLoggedIn, getLogin } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogin = () => {
+    getLogin();
     setIsLoggedIn(!isLoggedIn);
     navigate(location?.state?.from?.pathname);
   };

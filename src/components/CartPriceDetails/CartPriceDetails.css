@@ -31,3 +31,7 @@
   text-align: center;
   /* height: 0.8rem; */
 }
+
+.btn-order:hover {
+  cursor: pointer;
+}

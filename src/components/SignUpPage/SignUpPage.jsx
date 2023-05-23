@@ -1,23 +1,44 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
-// import "./SignUpPage.css";
-import "./LoginPage.css";
+import "./SignUpPage.css";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation, useNavigate } from "react-router";
 
 const SignUpPage = () => {
+  const { isLoggedIn, setIsLoggedIn, getSignUp, isSignUp, setIsSignUp } =
+    useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handleSignUp() {
+    getSignUp();
+    setIsLoggedIn(!isLoggedIn);
+    setIsSignUp(!isSignUp);
+    navigate(location?.state?.from?.pathname);
+  }
   return (
     <div>
       <Header />
-      <div className="login-cont">
-        <div className="login-card">
+      <div className="signUp-cont">
+        <div className="signUp-card">
           <h2>SignUp</h2>
+          <div className="input-email">
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" name="" id="firstName" placeholder="adarsh" />
+          </div>
+          <div className="input-email">
+            <label htmlFor="lastName">Last Name</label>
+            <input type="text" name="" id="lastName" placeholder="balika" />
+          </div>
           <div className="input-email">
             <label htmlFor="email">Email address</label>
             <input
               type="text"
               name=""
               id="email"
-              placeholder="adarshbalika@gmail.com"
+              placeholder="testSignUp@gmail.com"
             />
           </div>
           <div className="input-password">
@@ -37,7 +58,9 @@ const SignUpPage = () => {
               </label>
             </div>
           </div>
-          <button className="login-btn">Create New Account</button>
+          <button className="signUp-btn" onClick={handleSignUp}>
+            Create New Account
+          </button>
           <a className="create-new-acc" href="/login">
             Already have account
             <FontAwesomeIcon

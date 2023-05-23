@@ -5,6 +5,7 @@ import {
   faHouse,
   faMagnifyingGlass,
   faCartShopping,
+  faL,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
@@ -17,12 +18,15 @@ import { useState } from "react";
 const Header = () => {
   const { dispatch, state } = useData();
 
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, setIsSignUp } = useAuth();
 
   const { cart } = useCart();
   const { wish } = useWish();
 
-  const [searchText, setSearchText] = useState("");
+  function handleLogout() {
+    setIsLoggedIn(false);
+    setIsSignUp(false);
+  }
 
   return (
     <nav className="nav-container">
@@ -64,7 +68,7 @@ const Header = () => {
           </NavLink>
         )}
         {isLoggedIn && (
-          <button className="btn-login" onClick={() => setIsLoggedIn(false)}>
+          <button className="btn-login" onClick={handleLogout}>
             Logout
           </button>
         )}
@@ -76,7 +80,7 @@ const Header = () => {
           />
         </NavLink>
         <div className="wishlist-box">
-          <span className="red-circle wish-counter">{wish?.length}</span>
+          <span className="red-circle wish-counter">{wish?.length ?? 0}</span>
           <NavLink to="/wishlist">
             <FontAwesomeIcon
               icon={faHeartRegular}
@@ -86,7 +90,7 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="wishlist-box">
-          <span className="red-circle cart-counter">{cart?.length}</span>
+          <span className="red-circle cart-counter">{cart?.length ?? 0}</span>
           <NavLink className="cart-container" to="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}

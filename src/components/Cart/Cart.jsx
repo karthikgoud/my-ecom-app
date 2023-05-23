@@ -25,7 +25,7 @@ const Cart = () => {
 
   const grandTotal = itemPriceTotal - itemDiscount + deliveryTotal;
 
-  const totalItems = cart.reduce((acc, cur) => acc + cur.qty, 0);
+  const totalItems = cart?.reduce((acc, cur) => acc + cur.qty, 0);
 
   const cartTotal = {
     itemPriceTotal,
@@ -34,13 +34,6 @@ const Cart = () => {
     grandTotal,
     totalItems,
   };
-
-  // const uniqueProducts = cart.reduce((accumulator, current) => {
-  //   if (!accumulator.find((item) => item.title === current.title)) {
-  //     return [...accumulator, current];
-  //   }
-  //   return accumulator;
-  // }, []);
 
   return (
     <div>
@@ -58,7 +51,7 @@ const Cart = () => {
               <CartPageCard item={item} />
             ))}
           </div>
-          <CartPriceDetails cartTotal={cartTotal} />
+          {cart?.length !== 0 && <CartPriceDetails cartTotal={cartTotal} />}
         </div>
       </div>
     </div>

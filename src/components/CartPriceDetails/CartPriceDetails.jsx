@@ -28,7 +28,7 @@ const CartPriceDetails = ({ cartTotal }) => {
       </div>
       <hr />
       <p>You will save ₹{cartTotal.itemDiscount} on this order</p>
-      <button className="btn-order">Place Order</button>
+      <button className="btn-order">Check Out</button>
     </div>
   );
 };
