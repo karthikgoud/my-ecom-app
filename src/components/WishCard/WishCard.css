@@ -25,6 +25,13 @@
   padding: 0.5rem 0;
 }
 
+.wish-price-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .btn {
   width: 100%;
   padding: 0.3rem 0;

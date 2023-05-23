@@ -21,7 +21,10 @@ const WishCard = ({ item }) => {
       </div>
       <img src={item.image} alt="product image" />
       <p className="item-name">{item.title}</p>
-      <p className="price">Rs {item.price}</p>
+      <div className="wish-price-cont">
+        <p className="price-disCountedPrice">Rs {item.disCountedPrice}</p>
+        <p className="price">Rs {item.price}</p>
+      </div>
       <p className="item-name">Rating : {item.rating}</p>
       <button className="btn" onClick={() => delWishMoveToCart(item)}>
         Move to Cart
