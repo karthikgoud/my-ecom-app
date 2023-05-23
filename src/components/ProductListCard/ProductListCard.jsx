@@ -33,12 +33,19 @@ const ProductListCard = ({ item }) => {
           </button>
         )}
       </div>
-      <NavLink to={`/product/${item._id}`}>
+      <NavLink className="product-card-img" to={`/product/${item._id}`}>
         <img src={item.image} alt="product image" />
+        <div className="card-info">
+          <p className="item-name">{item.title}</p>
+          <div className="price-rating-cont">
+            <div className="price-cont">
+              <p className="price-disCountedPrice">₹{item.disCountedPrice}</p>
+              <p className="price">₹{item.price}</p>
+            </div>
+            <p className="item-rating">⭐{item.rating}</p>
+          </div>
+        </div>
       </NavLink>
-      <p className="item-name">{item.title}</p>
-      <p className="price">Rs {item.price}</p>
-      <p className="item-name">Rating : {item.rating}</p>
       {!item.isCarted && (
         <button className="btn" onClick={() => addToCart(item)}>
           Add to Cart
