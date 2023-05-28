@@ -7,7 +7,9 @@ import Loader from "../Loader/Loader";
 import { useData } from "../../context/DataContext";
 
 const Home = () => {
-  const { loader } = useData();
+  const {
+    productState: { loader },
+  } = useData();
 
   return (
     <div className="home-cont">

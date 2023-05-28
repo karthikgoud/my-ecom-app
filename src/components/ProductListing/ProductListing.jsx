@@ -7,7 +7,10 @@ import { useData } from "../../context/DataContext";
 import LoaderProductList from "../LoaderProductList/LoaderProductList";
 
 const ProductListing = () => {
-  const { filterKids, loader } = useData();
+  const {
+    transformedProducts,
+    productState: { loader },
+  } = useData();
 
   return (
     <div>
@@ -19,7 +22,7 @@ const ProductListing = () => {
             <LoaderProductList />
           ) : (
             <div className="productlist-container">
-              {filterKids?.map((item) => (
+              {transformedProducts()?.map((item) => (
                 <ProductListCard key={item._id} item={item} />
               ))}
             </div>

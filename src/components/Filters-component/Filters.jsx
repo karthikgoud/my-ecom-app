@@ -109,7 +109,9 @@ const Filters = () => {
             type="radio"
             defaultValue="highToLow"
             checked={state.sort === "highToLow"}
-            onChange={() => dispatch({ type: "SORT-HIGH-TO-LOW" })}
+            onChange={() =>
+              dispatch({ type: "SORT-HIGH-TO-LOW", payLoad: "highToLow" })
+            }
           />
           Price- High-to-Low
         </label>
@@ -119,7 +121,9 @@ const Filters = () => {
             type="radio"
             defaultValue="lowToHigh"
             checked={state.sort === "lowToHigh"}
-            onChange={() => dispatch({ type: "SORT-LOW-TO-HIGH" })}
+            onChange={() =>
+              dispatch({ type: "SORT-LOW-TO-HIGH", payLoad: "lowToHigh" })
+            }
           />
           Price- Low-to-High
         </label>
