@@ -31,9 +31,9 @@ const CartPageCard = ({ item }) => {
                     -
                   </button>
                 )}
-                {item.qty < 1 && (
+                {/* {item.qty < 1 && (
                   <button className="cart-card-btn-round">-</button>
-                )}
+                )} */}
                 <input type="text" value={item.qty} />
                 <button
                   className="cart-card-btn-round"

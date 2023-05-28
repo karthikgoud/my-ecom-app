@@ -19,17 +19,28 @@ const initialStateFilter = {
   searchValue: null,
 };
 
+const dummyAddress = {
+  name: "Vishal",
+  houseNo: "45",
+  colony: "rainbow colony",
+  area: "hebbal",
+  city: "bangalore",
+  state: "karnataka",
+  country: "INDIA",
+  postalCode: "560056",
+  phoneNo: "919923254239",
+};
+
 export const DataProvider = ({ children }) => {
   const [productState, productDispatch] = useReducer(productReducer, {
     data: [],
     cartData: [],
     wishListData: [],
     categoryData: [],
+    addressList: [dummyAddress],
     loader: true,
   });
   const [state, dispatch] = useReducer(filterReducer, initialStateFilter);
-
-  const [loader, setLoader] = useState(true);
 
   const getData = async () => {
     try {
@@ -132,7 +143,6 @@ export const DataProvider = ({ children }) => {
         dispatch,
         wishUpdate,
         toggleAddToCartBtn,
-        loader,
       }}
     >
       {children}

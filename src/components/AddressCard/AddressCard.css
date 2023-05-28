@@ -1,0 +1,12 @@
+.address-card {
+  height: max-content;
+  box-shadow: 3px 3px 10px rgb(207, 204, 204);
+  padding: 1rem;
+  display: flex;
+  margin: 1rem 0;
+}
+
+.address-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+}

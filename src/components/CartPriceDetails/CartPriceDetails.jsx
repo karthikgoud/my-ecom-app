@@ -1,9 +1,19 @@
+import { NavLink } from "react-router-dom";
 import "./CartPriceDetails.css";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CartPriceDetails = ({ cartTotal }) => {
   // console.log(cartTotal);
   return (
     <div className="cart-price-details-cont">
+      <div className="coupon-cont">
+        <div>
+          <FontAwesomeIcon icon={faTag} /> Have a coupon ?
+        </div>
+        <button id="btn-coupon">Apply</button>
+      </div>
+      <hr />
       <h4>Cart Price Details</h4>
       <hr />
       <div className="cart-price-list-item">
@@ -27,8 +37,12 @@ const CartPriceDetails = ({ cartTotal }) => {
         <div>₹{cartTotal.grandTotal}</div>
       </div>
       <hr />
-      <p>You will save ₹{cartTotal.itemDiscount} on this order</p>
-      <button className="btn-order">Check Out</button>
+      <p className="save-text">
+        You will save ₹{cartTotal.itemDiscount} on this order
+      </p>
+      <NavLink to="/checkout" className="NavLink">
+        <button className="btn-checkout">Check Out</button>
+      </NavLink>
     </div>
   );
 };

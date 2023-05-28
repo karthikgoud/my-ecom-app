@@ -13,6 +13,7 @@ import { useAuth } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserProfile from "./components/UserProfile/UserProfile";
+import CheckOut from "./components/CheckOut/CheckOut";
 
 function App() {
   const { isLoggedIn, isSignUp } = useAuth();
@@ -38,6 +39,8 @@ function App() {
         {!isSignUp && <Route path="/signup" element={<SignUpPage />} />}
         {isSignUp && <Route path="/signup" element={<ProductListing />} />}
         <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route path="/checkout" element={<CheckOut />} />
+
         <Route
           path="/wishlist"
           element={
