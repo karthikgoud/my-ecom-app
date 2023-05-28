@@ -4,9 +4,34 @@
   gap: 1rem;
   padding: 1rem;
   background: #fff;
-  width: 400px;
+  width: 500px;
   height: max-content;
 }
+
+.cart-price-details-cont h4 {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.coupon-cont {
+  display: flex;
+  justify-content: space-between;
+}
+
+#btn-coupon {
+  padding: 0 1rem;
+  outline: 2px solid gray;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+#btn-coupon:hover {
+  cursor: pointer;
+  background-color: grey;
+  color: white;
+}
+
 .cart-price-list {
   display: flex;
   flex-direction: column;
@@ -21,17 +46,32 @@
 .total-cont {
   display: flex;
   justify-content: space-between;
-  font-weight: 700;
+  font-weight: 600;
 }
 
-.btn-order {
+.save-text {
+  color: #2ecc71;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.btn-checkout {
+  width: 100%;
   background: #3b82f6;
-  padding: 1rem;
+  padding: 0.8rem;
   color: white;
   text-align: center;
-  /* height: 0.8rem; */
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
-.btn-order:hover {
+.btn-checkout:hover {
+  background: lightgreen;
   cursor: pointer;
+  color: darkgreen;
+}
+
+.NavLink {
+  text-decoration: none;
 }
