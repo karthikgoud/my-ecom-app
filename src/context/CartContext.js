@@ -5,7 +5,7 @@ import { ToastHandler } from "../components/Toast/Toast";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { cart, setCart, setWish, toggleAddToCartBtn } = useData();
+  const { productDispatch, setWish, toggleAddToCartBtn } = useData();
 
   const getCart = async () => {
     try {
@@ -20,7 +20,8 @@ export const CartProvider = ({ children }) => {
       });
 
       const cartRes = await res.json();
-      setCart(cartRes.cart); // sets cart to empty array
+      productDispatch({ type: "SET_CART", payload: cartRes.cart });
+      // setCart(cartRes.cart); // sets cart to empty array
       // console.log("initail cart", cartRes);
     } catch (e) {
       console.log(e);
@@ -44,7 +45,9 @@ export const CartProvider = ({ children }) => {
       });
 
       const addCart = await res.json();
-      setCart(addCart.cart); // adds product to cart array
+      productDispatch({ type: "SET_CART", payload: addCart.cart });
+
+      // setCart(addCart.cart); // adds product to cart array
       // console.log("added cart", addCart.cart);
       toggleAddToCartBtn(item._id);
       ToastHandler("success", "Added to Cart");
@@ -65,7 +68,8 @@ export const CartProvider = ({ children }) => {
       });
 
       const updatedCart = await res.json();
-      setCart(updatedCart.cart);
+      productDispatch({ type: "SET_CART", payload: updatedCart.cart });
+      // setCart(updatedCart.cart);
       toggleAddToCartBtn(item._id);
       ToastHandler("warn", "Removed from Cart");
     } catch (e) {
@@ -90,7 +94,8 @@ export const CartProvider = ({ children }) => {
       });
       const wishData = await res.json();
       // console.log("from context", wishData.wishlist);
-      setWish(wishData.wishlist);
+      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+      // setWish(wishData.wishlist);
       ToastHandler("success", "Added to WishList");
     } catch (e) {
       console.error(e);
@@ -115,7 +120,8 @@ export const CartProvider = ({ children }) => {
     });
 
     const newCart = await res.json();
-    setCart(newCart.cart);
+    productDispatch({ type: "SET_CART", payload: newCart.cart });
+    // setCart(newCart.cart);
   };
 
   const removeOne = async (item) => {
@@ -136,7 +142,8 @@ export const CartProvider = ({ children }) => {
     });
 
     const newCart = await res.json();
-    setCart(newCart.cart);
+    productDispatch({ type: "SET_CART", payload: newCart.cart });
+    // setCart(newCart.cart);
   };
 
   const delCartMoveToWish = (item) => {
@@ -151,8 +158,6 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        cart,
-        setCart,
         addToCart,
         removeFromCart,
         delCartMoveToWish,

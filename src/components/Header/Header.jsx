@@ -16,12 +16,12 @@ import { useCart } from "../../context/CartContext";
 import { useWish } from "../../context/WishContext";
 
 const Header = () => {
-  const { dispatch, state } = useData();
+  const {
+    dispatch,
+    productState: { cartData, wishListData },
+  } = useData();
 
   const { isLoggedIn, setIsLoggedIn, setIsSignUp } = useAuth();
-
-  const { cart } = useCart();
-  const { wish } = useWish();
 
   function handleLogout() {
     setIsLoggedIn(false);
@@ -80,7 +80,9 @@ const Header = () => {
           />
         </NavLink>
         <div className="wishlist-box">
-          <span className="red-circle wish-counter">{wish?.length ?? 0}</span>
+          <span className="red-circle wish-counter">
+            {wishListData?.length ?? 0}
+          </span>
           <NavLink to="/wishlist">
             <FontAwesomeIcon
               icon={faHeartRegular}
@@ -90,7 +92,9 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="wishlist-box">
-          <span className="red-circle cart-counter">{cart?.length ?? 0}</span>
+          <span className="red-circle cart-counter">
+            {cartData?.length ?? 0}
+          </span>
           <NavLink className="cart-container" to="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}

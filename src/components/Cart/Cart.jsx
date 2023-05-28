@@ -1,31 +1,33 @@
 import { useCart } from "../../context/CartContext";
+import { useData } from "../../context/DataContext";
 import CartPageCard from "../CartPageCard/CartPageCard";
 import CartPriceDetails from "../CartPriceDetails/CartPriceDetails";
 import Header from "../Header/Header";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cart } = useCart();
-  console.log("cart state", cart);
+  const {
+    productState: { cartData },
+  } = useData();
 
-  const itemPriceTotal = cart?.reduce(
+  const itemPriceTotal = cartData?.reduce(
     (acc, cur) => acc + Number(cur.price * cur.qty),
     0
   );
 
-  const itemDiscount = cart?.reduce(
+  const itemDiscount = cartData?.reduce(
     (acc, cur) => acc + Number(cur.amountSaved * cur.qty),
     0
   );
 
-  const deliveryTotal = cart?.reduce(
+  const deliveryTotal = cartData?.reduce(
     (acc, cur) => acc + Number(cur.deliveryCharges * cur.qty),
     0
   );
 
   const grandTotal = itemPriceTotal - itemDiscount + deliveryTotal;
 
-  const totalItems = cart?.reduce((acc, cur) => acc + cur.qty, 0);
+  const totalItems = cartData?.reduce((acc, cur) => acc + cur.qty, 0);
 
   const cartTotal = {
     itemPriceTotal,
@@ -40,18 +42,18 @@ const Cart = () => {
       <Header />
       <div className="cart-section">
         <div>
-          <h3 className="cart-title">My Cart({cart?.length})</h3>
+          <h3 className="cart-title">My Cart({cartData?.length})</h3>
         </div>
         <div className="card-section">
-          {cart?.length === 0 && (
+          {cartData?.length === 0 && (
             <h1 className="cart-msg">Add Items To Cart</h1>
           )}
           <div className="cart-card-cont">
-            {cart?.map((item) => (
+            {cartData?.map((item) => (
               <CartPageCard item={item} />
             ))}
           </div>
-          {cart?.length !== 0 && <CartPriceDetails cartTotal={cartTotal} />}
+          {cartData?.length !== 0 && <CartPriceDetails cartTotal={cartTotal} />}
         </div>
       </div>
     </div>

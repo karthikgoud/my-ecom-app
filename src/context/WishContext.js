@@ -6,7 +6,7 @@ import { ToastHandler } from "../components/Toast/Toast";
 export const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-  const { wish, setWish } = useData();
+  const { wish, setWish, productState, productDispatch } = useData();
 
   const { addToCart } = useCart();
 
@@ -23,7 +23,8 @@ export const WishProvider = ({ children }) => {
       });
       const wishData = await res.json();
       // console.log("inintial wish", wishData.wishlist);
-      setWish(wishData.wishlist);
+      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+      // setWish(wishData.wishlist);
     } catch (e) {
       console.error(e);
     }
@@ -47,7 +48,8 @@ export const WishProvider = ({ children }) => {
       });
       const wishData = await res.json();
       // console.log("from context", wishData.wishlist);
-      setWish(wishData.wishlist);
+      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+      // setWish(wishData.wishlist);
       ToastHandler("success", "Added to WishList");
     } catch (e) {
       console.error(e);
@@ -65,7 +67,8 @@ export const WishProvider = ({ children }) => {
       });
       const wishData = await res.json();
       wishUpdate(id);
-      setWish(wishData.wishlist);
+      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+      // setWish(wishData.wishlist);
       ToastHandler("warn", "Removed from WishList");
     } catch (e) {
       console.log(e);

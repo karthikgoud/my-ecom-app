@@ -5,76 +5,37 @@ import {
   useReducer,
   useState,
 } from "react";
+import { filterReducer, productReducer } from "./Reducer";
 
 export const DataContext = createContext();
 
-// const cartReducer = (state, action) => {
-//   switch (action.type) {
-//     case "INCREMENT":
-//       console.log(action);
-//     case "DECREMENT":
-//       return [...state, action.payLoad];
-//     default:
-//       return state;
-//   }
-// };
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SORT-HIGH-TO-LOW":
-      return { ...state, sort: "highToLow" };
-    case "SORT-LOW-TO-HIGH":
-      return { ...state, sort: "lowToHigh" };
-    case "FILTER_MEN":
-      return { ...state, menCategory: !state.menCategory };
-    case "FILTER_WOMEN":
-      return { ...state, womenCategory: !state.womenCategory };
-    case "FILTER_KIDS":
-      return { ...state, kidsCategory: !state.kidsCategory };
-    case "FILTER-RATING":
-      return { ...state, starRating: action.payLoad };
-    case "RANGE_FILTER":
-      return { ...state, rangeValue: action.payLoad };
-    case "SEARCH_BOX":
-      console.log(action);
-      return { ...state, searchValue: action.payLoad };
-    case "RESET":
-      return {
-        ...state,
-        sort: null,
-        starRating: null,
-        rangeValue: null,
-        menCategory: false,
-        womenCategory: false,
-        kidsCategory: false,
-        searchValue: null,
-      };
-    default:
-      return state;
-  }
+const initialStateFilter = {
+  sort: null,
+  starRating: null,
+  rangeValue: null,
+  menCategory: false,
+  womenCategory: false,
+  kidsCategory: false,
+  searchValue: null,
 };
 
 export const DataProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {
-    sort: null,
-    starRating: null,
-    rangeValue: null,
-    menCategory: false,
-    womenCategory: false,
-    kidsCategory: false,
-    searchValue: null,
+  const [productState, productDispatch] = useReducer(productReducer, {
+    data: [],
+    cartData: [],
+    wishListData: [],
+    categoryData: [],
+    loader: true,
   });
-  const [data, setData] = useState([]);
-  const [category, setCategory] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [wish, setWish] = useState([]);
+  const [state, dispatch] = useReducer(filterReducer, initialStateFilter);
+
   const [loader, setLoader] = useState(true);
 
   const getData = async () => {
     try {
       const res = await fetch("/api/products");
       const myProducts = await res.json();
-      setData(myProducts.products);
+      productDispatch({ type: "GET_DATA", payload: myProducts.products });
     } catch (e) {
       console.error(e);
     }
@@ -84,8 +45,10 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await fetch("/api/categories");
       const myCategory = await res.json();
-      setCategory(myCategory.categories);
-      setLoader(false);
+      productDispatch({ type: "GET_CATEGORY", payload: myCategory.categories });
+      productDispatch({ type: "SET_LOADER", payload: false });
+
+      // setLoader(false);
     } catch (e) {
       console.error(e);
     }
@@ -99,81 +62,76 @@ export const DataProvider = ({ children }) => {
   // iswish
 
   function wishUpdate(id) {
-    const wishUpdate = [...data].map((item) =>
+    const wishUpdate = [...productState.data].map((item) =>
       item._id === id ? { ...item, isWished: !item.isWished } : item
     );
-    setData(wishUpdate);
+    productDispatch({ type: "WISH_UPDATE", payload: wishUpdate });
   }
 
   function toggleAddToCartBtn(id) {
     console.log("id", id);
-    const carted = [...data].map((item) =>
+    const carted = [...productState.data].map((item) =>
       item._id === id ? { ...item, isCarted: !item.isCarted } : item
     );
-    setData(carted);
+    productDispatch({ type: "TOGGLE_ADD_TO_CART_BTN", payload: carted });
   }
 
-  // sorted data : radio
+  const transformedProducts = () => {
+    let sortedProducts = productState.data;
 
-  const sortedData =
-    state.sort !== null
-      ? data.toSorted((a, b) =>
-          state.sort === "highToLow" ? b.price - a.price : a.price - b.price
-        )
-      : data;
+    if (state.sort) {
+      sortedProducts = sortedProducts.toSorted((a, b) =>
+        state.sort === "highToLow" ? b.price - a.price : a.price - b.price
+      );
+    }
 
-  //search box
+    if (state.searchValue) {
+      sortedProducts = sortedProducts.filter((item) =>
+        item.title.toLowerCase().includes(state.searchValue.toLowerCase())
+      );
+    }
 
-  const filterText =
-    state.searchValue !== null
-      ? sortedData.filter((item) =>
-          item.title.toLowerCase().includes(state.searchValue.toLowerCase())
-        )
-      : sortedData;
+    if (state.rangeValue) {
+      sortedProducts = sortedProducts.filter(
+        (item) => Number(item.price) <= Number(state.rangeValue)
+      );
+    }
 
-  // filter range
+    if (state.starRating) {
+      sortedProducts = sortedProducts.filter(
+        (item) => item.rating >= state.starRating
+      );
+    }
 
-  const rangeFilter =
-    state.rangeValue !== null
-      ? filterText.filter(
-          (item) => Number(item.price) <= Number(state.rangeValue)
-        )
-      : filterText;
+    if (state.menCategory) {
+      sortedProducts = sortedProducts.filter(
+        (item) => item.categoryName === "Men"
+      );
+    }
+    if (state.womenCategory) {
+      sortedProducts = sortedProducts.filter(
+        (item) => item.categoryName === "Women"
+      );
+    }
+    if (state.kidsCategory) {
+      sortedProducts = sortedProducts.filter(
+        (item) => item.categoryName === "Kids"
+      );
+    }
 
-  // rating filter data : radio
-
-  const filterRating =
-    state.starRating !== null
-      ? rangeFilter.filter((item) => item.rating >= state.starRating)
-      : rangeFilter;
-
-  // Filter data : checkbox
-
-  const filterMen = state.menCategory
-    ? filterRating.filter((item) => item.categoryName === "Men")
-    : filterRating;
-
-  const filterWomen = state.womenCategory
-    ? filterMen.filter((item) => item.categoryName === "Women")
-    : filterMen;
-
-  const filterKids = state.kidsCategory
-    ? filterWomen.filter((item) => item.categoryName === "Kids")
-    : filterWomen;
+    return sortedProducts;
+  };
 
   return (
     <DataContext.Provider
       value={{
-        filterKids,
-        category,
+        productState,
+        productDispatch,
+        transformedProducts,
         state,
         dispatch,
         wishUpdate,
         toggleAddToCartBtn,
-        cart,
-        setCart,
-        wish,
-        setWish,
         loader,
       }}
     >
