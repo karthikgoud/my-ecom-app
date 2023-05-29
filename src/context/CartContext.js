@@ -26,28 +26,48 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (item) => {
-    try {
-      const keyToken = localStorage.getItem("token");
+    const keyToken = localStorage.getItem("token");
 
-      const data = {
-        product: item,
-      };
+    const res = await fetch("/api/user/cart", {
+      method: "GET",
+      headers: {
+        authorization: keyToken,
+      },
+    });
 
-      const res = await fetch("/api/user/cart", {
-        method: "POST",
-        headers: {
-          authorization: keyToken,
-        },
-        body: JSON.stringify(data),
-      });
+    const cartRes = await res.json();
 
-      const addCart = await res.json();
-      productDispatch({ type: "SET_CART", payload: addCart.cart });
+    const isInCart = cartRes.cart.some((product) => product._id === item._id);
 
-      toggleAddToCartBtn(item._id);
-      ToastHandler("success", "Added to Cart");
-    } catch (e) {
-      console.log(e);
+    if (isInCart) {
+      addOne(item);
+    } else {
+      try {
+        const keyToken = localStorage.getItem("token");
+
+        const data = {
+          product: item,
+        };
+
+        const res = await fetch("/api/user/cart", {
+          method: "POST",
+          headers: {
+            authorization: keyToken,
+          },
+          body: JSON.stringify(data),
+        });
+
+        const addCart = await res.json();
+
+        console.log("isInCart", isInCart);
+
+        productDispatch({ type: "SET_CART", payload: addCart.cart });
+
+        toggleAddToCartBtn(item._id);
+        ToastHandler("success", "Added to Cart");
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -115,7 +135,6 @@ export const CartProvider = ({ children }) => {
 
     const newCart = await res.json();
     productDispatch({ type: "SET_CART", payload: newCart.cart });
-    // setCart(newCart.cart);
   };
 
   const removeOne = async (item) => {

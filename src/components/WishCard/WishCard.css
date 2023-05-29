@@ -43,19 +43,19 @@
   font-size: 0.8rem;
 }
 
-.heart {
+.wish-heart {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   position: absolute;
   background-color: white;
   right: 8px;
   top: 6px;
 }
 
-.heart:hover {
+.wish-heart:hover {
   cursor: pointer;
 }
