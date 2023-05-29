@@ -6,11 +6,10 @@ import { ToastHandler } from "../components/Toast/Toast";
 export const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-  const { wish, setWish, productState, productDispatch } = useData();
+  const { wish, setWish, productState, productDispatch, wishUpdate } =
+    useData();
 
   const { addToCart } = useCart();
-
-  const { wishUpdate } = useData();
 
   const getWish = async () => {
     try {
@@ -78,6 +77,7 @@ export const WishProvider = ({ children }) => {
   const delWishMoveToCart = (item) => {
     deleteWish(item._id);
     addToCart(item);
+    wishUpdate(item._id);
   };
 
   useEffect(() => {

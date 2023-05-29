@@ -1,5 +1,9 @@
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import {
+  faHeart,
+  faCircleXmark,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark as darkClose } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./WishCard.css";
@@ -10,13 +14,9 @@ const WishCard = ({ item }) => {
 
   return (
     <div className="wish-card-container">
-      <div className="heart">
+      <div className="wish-heart">
         <button onClick={() => deleteWish(item._id)}>
-          <FontAwesomeIcon
-            icon={faHeart}
-            style={{ color: "#f71839" }}
-            size="xl"
-          />
+          <FontAwesomeIcon icon={faXmark} style={{ color: "red" }} size="xl" />
         </button>
       </div>
       <img src={item.image} alt="product image" />

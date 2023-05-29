@@ -93,6 +93,7 @@
   margin-bottom: 1rem;
   text-align: center;
   border: none;
+  font-weight: 600;
 }
 
 .cart-card-btn:hover {
@@ -104,9 +105,17 @@
   color: white;
 }
 
+.remove:hover {
+  background-color: #283747;
+  color: white;
+}
+
 .move {
   background-color: #fff;
   border: 1px solid #9a9a9a;
   color: #9a9a9a;
   margin: 0;
+}
+.move:hover {
+  color: black;
 }
