@@ -80,9 +80,11 @@ const Header = () => {
           />
         </NavLink>
         <div className="wishlist-box">
-          <span className="red-circle wish-counter">
-            {wishListData?.length ?? 0}
-          </span>
+          {wishListData?.length > 0 && (
+            <span className="red-circle wish-counter">
+              {wishListData?.length ?? 0}
+            </span>
+          )}
           <NavLink to="/wishlist">
             <FontAwesomeIcon
               icon={faHeartRegular}
@@ -92,9 +94,11 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="wishlist-box">
-          <span className="red-circle cart-counter">
-            {cartData?.length ?? 0}
-          </span>
+          {cartData?.length > 0 && (
+            <span className="red-circle cart-counter">
+              {cartData?.length ?? 0}
+            </span>
+          )}
           <NavLink className="cart-container" to="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}
