@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useData } from "./DataContext";
 import { ToastHandler } from "../components/Toast/Toast";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { productDispatch, setWish, toggleAddToCartBtn } = useData();
+  const { productDispatch, toggleAddToCartBtn } = useData();
 
   const getCart = async () => {
     try {

@@ -4,15 +4,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 const LoginPage = () => {
   const { isLoggedIn, setIsLoggedIn, getLogin } = useAuth();
 
+  const [loginForm, setLoginForm] = useState({
+    email: "karthikgoud@gmail.com",
+    password: "karth@77",
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
 
+  // useEffect(() => {
+  //   (async () => {
+  //     getLogin(loginForm.email, loginForm.password);
+  //   })();
+  // }, [loginForm.email, loginForm.password]);
+
   const handleLogin = () => {
-    getLogin();
+    getLogin(loginForm.email, loginForm.password);
+
     setIsLoggedIn(!isLoggedIn);
     navigate(location?.state?.from?.pathname);
   };
@@ -29,7 +42,11 @@ const LoginPage = () => {
               type="text"
               name=""
               id="email"
-              placeholder="adarshbalika@gmail.com"
+              placeholder="test@gmail.com"
+              value={loginForm.email}
+              onChange={(e) =>
+                setLoginForm((prev) => ({ ...prev, email: e.target.value }))
+              }
             />
           </div>
           <div className="input-password">
@@ -39,6 +56,10 @@ const LoginPage = () => {
               name=""
               id="password"
               placeholder="*********"
+              value={loginForm.password}
+              onChange={(e) =>
+                setLoginForm((prev) => ({ ...prev, password: e.target.value }))
+              }
             />
           </div>
           <div className="forgot-cont">

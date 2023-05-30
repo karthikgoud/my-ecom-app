@@ -6,45 +6,56 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const getLogin = async () => {
+  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
+
+  const getLogin = async (email, password) => {
     try {
       const cred = {
-        email: "adarshbalika@gmail.com",
-        password: "adarshbalika",
+        email: email,
+        password: password,
       };
       const res = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(cred),
       });
 
-      const { encodedToken } = await res.json();
-
-      // console.log("encodedToken", encodedToken);
+      const { foundUser, encodedToken } = await res.json();
 
       localStorage.setItem("token", encodedToken);
+      setToken(encodedToken);
+      localStorage.setItem("user", foundUser);
+      setUser(foundUser);
+      console.log("founduser", foundUser);
+
+      // localStorage.setItem("token", encodedToken);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const getSignUp = async () => {
+  const getSignUp = async (email, password, firstName, lastName) => {
     try {
       const cred = {
-        email: "testSignUp@gmail.com",
-        password: "adarshbalika",
-        firstName: "adarsh",
-        lastName: "balika",
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
       };
+
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         body: JSON.stringify(cred),
       });
 
-      const { encodedToken } = await res.json();
-
-      console.log("signUp", encodedToken);
+      const { createdUser, encodedToken } = await res.json();
 
       localStorage.setItem("token", encodedToken);
+      setToken(encodedToken);
+      localStorage.setItem("user", createdUser);
+      setUser(createdUser);
+
+      // localStorage.setItem("token", encodedToken);
     } catch (e) {
       console.log(e);
     }
@@ -53,10 +64,14 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
-        setIsLoggedIn,
+        token,
+        setToken,
+        user,
+        setUser,
         getLogin,
         getSignUp,
+        isLoggedIn,
+        setIsLoggedIn,
         isSignUp,
         setIsSignUp,
       }}

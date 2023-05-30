@@ -4,20 +4,38 @@ import Header from "../Header/Header";
 import "./SignUpPage.css";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
 
 const SignUpPage = () => {
   const { isLoggedIn, setIsLoggedIn, getSignUp, isSignUp, setIsSignUp } =
     useAuth();
 
+  const [signUpForm, setSignUpForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
 
   function handleSignUp() {
-    getSignUp();
-    setIsLoggedIn(!isLoggedIn);
-    setIsSignUp(!isSignUp);
-    navigate(location?.state?.from?.pathname);
+    const { firstName, lastName, email, password } = signUpForm;
+
+    if (firstName && lastName && email && password !== "") {
+      getSignUp(email, password, firstName, lastName);
+      setIsLoggedIn(!isLoggedIn);
+      setIsSignUp(!isSignUp);
+      navigate(location?.state?.from?.pathname);
+    }
   }
+
+  const fillFormValue = (event, fieldName) => {
+    const { value } = event.target;
+    setSignUpForm((prev) => ({ ...prev, [fieldName]: value }));
+  };
+
   return (
     <div>
       <Header />
@@ -26,28 +44,42 @@ const SignUpPage = () => {
           <h2>SignUp</h2>
           <div className="input-email">
             <label htmlFor="firstName">First Name</label>
-            <input type="text" name="" id="firstName" placeholder="adarsh" />
+            <input
+              type="text"
+              id="firstName"
+              placeholder="adarsh"
+              value={signUpForm.firstName}
+              onChange={(e) => fillFormValue(e, "firstName")}
+            />
           </div>
           <div className="input-email">
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" name="" id="lastName" placeholder="balika" />
+            <input
+              type="text"
+              id="lastName"
+              placeholder="balika"
+              value={signUpForm.lastName}
+              onChange={(e) => fillFormValue(e, "lastName")}
+            />
           </div>
           <div className="input-email">
             <label htmlFor="email">Email address</label>
             <input
               type="text"
-              name=""
               id="email"
               placeholder="testSignUp@gmail.com"
+              value={signUpForm.email}
+              onChange={(e) => fillFormValue(e, "email")}
             />
           </div>
           <div className="input-password">
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              name=""
               id="password"
               placeholder="*********"
+              value={signUpForm.password}
+              onChange={(e) => fillFormValue(e, "password")}
             />
           </div>
           <div className="forgot-cont">

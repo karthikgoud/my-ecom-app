@@ -4,7 +4,7 @@ import "./UserProfile.css";
 import { useAuth } from "../../context/AuthContext";
 
 const UserProfile = () => {
-  const { isLoggedIn, setIsLoggedIn, setIsSignUp } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, setIsSignUp, user } = useAuth();
 
   function handleLogout() {
     setIsLoggedIn(false);
@@ -24,8 +24,8 @@ const UserProfile = () => {
                 <p>Email</p>
               </div>
               <div className="">
-                <p>Adarsh Balika</p>
-                <p>adarshbalika@gmail.com</p>
+                <p>{`${user?.firstName} ${user?.lastName}`}</p>
+                <p>{user?.email}</p>
               </div>
             </div>
             <div>

@@ -1,5 +1,4 @@
 export const productReducer = (state, action) => {
-  console.log(state, action);
   switch (action.type) {
     // only data
     case "GET_DATA":
@@ -47,7 +46,6 @@ export const filterReducer = (state, action) => {
     case "RANGE_FILTER":
       return { ...state, rangeValue: action.payLoad };
     case "SEARCH_BOX":
-      console.log(action);
       return { ...state, searchValue: action.payLoad };
     case "RESET":
       return {
