@@ -20,10 +20,10 @@ const initialStateFilter = {
 };
 
 const dummyAddress = {
-  name: "Vishal Goud",
+  name: "Adarsh Balika",
   houseNo: "45",
   colony: "Rainbow colony",
-  area: "Bogadi",
+  area: "3rd Main, Bogadi",
   city: "Mysore",
   state: "Karnataka",
   country: "INDIA",

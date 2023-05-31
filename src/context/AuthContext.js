@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
       setToken(encodedToken);
       localStorage.setItem("user", foundUser);
       setUser(foundUser);
-      console.log("founduser", foundUser);
 
       // localStorage.setItem("token", encodedToken);
     } catch (e) {

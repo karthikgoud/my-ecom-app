@@ -7,21 +7,23 @@ import { useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
 const LoginPage = () => {
-  const { isLoggedIn, setIsLoggedIn, getLogin } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, getLogin, user } = useAuth();
 
   const [loginForm, setLoginForm] = useState({
-    email: "vishalgoud@gmail.com",
-    password: "karth@77",
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     getLogin(loginForm.email, loginForm.password);
-  //   })();
-  // }, [loginForm.email, loginForm.password]);
+  useEffect(() => {
+    setLoginForm((prev) => ({
+      ...prev,
+      email: "adarshbalika@gmail.com",
+      password: "adarshbalika",
+    }));
+  }, []);
 
   const handleLogin = () => {
     getLogin(loginForm.email, loginForm.password);
