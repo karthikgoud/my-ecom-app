@@ -1,34 +1,26 @@
 import { useData } from "../../context/DataContext";
-import AddressCard from "../AddressCard/AddressCard";
+import { ToastHandler } from "../Toast/Toast";
 import "./CheckOutDetails.css";
 
 const CheckOutDetails = ({ cartTotal, address }) => {
   const {
-    productState: { cartData },
+    productState: { cartData, orderAddress },
   } = useData();
 
-  const {
-    name,
-    houseNo,
-    colony,
-    area,
-    city,
-    state,
-    country,
-    postalCode,
-    phoneNo,
-  } = address;
+  function handlePlaceOrder() {
+    ToastHandler("success", "Order Placed, Thank You !!!");
+  }
 
   return (
     <div className="checkout-price-details-cont">
-      <h4>ORDER DETAILS</h4>
+      <h4>ORDER SUMMARY</h4>
       <hr />
       <div>
         <div className="checkout-price-list-item">
           <p className="item-heading">Items</p>
           <p className="item-heading">QTY</p>
         </div>
-        {cartData.map((item) => (
+        {cartData?.map((item) => (
           <div className="checkout-price-list-item">
             <p>{item.title}</p>
             <p>{item.qty}</p>
@@ -60,15 +52,23 @@ const CheckOutDetails = ({ cartTotal, address }) => {
       <hr />
       <h4>DELIVER TO</h4>
       <hr />
-      <div>
-        <div className="address-name">{name}</div>
+      {!orderAddress.name && <p>Please select delivery address</p>}
+      {orderAddress.name && (
         <div>
-          House no : {houseNo} , {colony}, {area}, {city},{state},{country}
-          {postalCode}
+          <div className="address-name">{orderAddress.name}</div>
+          <div>
+            House no : {orderAddress.houseNo} , {orderAddress.colony},{" "}
+            {orderAddress.area}, {orderAddress.city},{orderAddress.state},
+            {orderAddress.country}
+            {orderAddress.postalCode}
+          </div>
+          <div>Phone: {orderAddress.phoneNo}</div>
         </div>
-        <div>Phone: {phoneNo}</div>
-      </div>
-      <button className="btn-order">PLACE ORDER</button>
+      )}
+
+      <button onClick={handlePlaceOrder} className="btn-order">
+        PLACE ORDER
+      </button>
     </div>
   );
 };

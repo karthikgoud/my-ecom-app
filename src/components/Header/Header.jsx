@@ -68,9 +68,11 @@ const Header = () => {
           </NavLink>
         )}
         {isLoggedIn && (
-          <button className="btn-login" onClick={handleLogout}>
-            Logout
-          </button>
+          <NavLink to="/">
+            <button className="btn-login" onClick={handleLogout}>
+              Logout
+            </button>
+          </NavLink>
         )}
         <NavLink to="/product" onClick={() => dispatch({ type: "RESET" })}>
           <FontAwesomeIcon

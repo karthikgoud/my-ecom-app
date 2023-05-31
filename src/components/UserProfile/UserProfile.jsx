@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
 import Header from "../Header/Header";
 import "./UserProfile.css";
 import { useAuth } from "../../context/AuthContext";
+import ProfileCard from "./ProfileCard/ProfileCard";
+import AddressForm from "./AddressForm/AddressForm";
 
 const UserProfile = () => {
   const { isLoggedIn, setIsLoggedIn, setIsSignUp, user } = useAuth();
@@ -14,31 +15,13 @@ const UserProfile = () => {
   return (
     <div>
       <Header />
-      <div className="profile-cont">
-        <div className="profile-card">
-          <div className="card-inside">
-            <div className="profile-heading">Profile Details</div>
-            <div className="profile-details-main">
-              <div className="profile-details-title">
-                <p>Fullname</p>
-                <p>Email</p>
-              </div>
-              <div className="">
-                <p>{`${user?.firstName} ${user?.lastName}`}</p>
-                <p>{user?.email}</p>
-              </div>
-            </div>
-            <div>
-              {isLoggedIn && (
-                <NavLink to="/">
-                  <button className="profile-logout-btn" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </NavLink>
-              )}
-            </div>
-          </div>
-        </div>
+      <div className="user-profile-cont">
+        <ProfileCard
+          user={user}
+          handleLogout={handleLogout}
+          isLoggedIn={isLoggedIn}
+        />
+        <AddressForm />
       </div>
     </div>
   );

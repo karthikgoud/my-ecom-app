@@ -24,6 +24,23 @@ export const productReducer = (state, action) => {
     case "SET_LOADER":
       return { ...state, loader: action.payload };
 
+    // address
+
+    case "ADD_NEW_ADDRESS":
+      return { ...state, addressList: [...state.addressList, action.payload] };
+
+    case "DELETE_ADDRESS":
+      return { ...state, addressList: [...action.payload] };
+
+    case "SET_DELEVERY_ADDRESS":
+      return { ...state, orderAddress: { ...action.payload } };
+
+    case "UPDATE_ADDRESS":
+      const updatedAddress = state.addressList.map((eachAddress) =>
+        eachAddress.name === action.payload.name ? action.payload : eachAddress
+      );
+      return { ...state, addressList: [...updatedAddress] };
+
     default:
       return state;
   }

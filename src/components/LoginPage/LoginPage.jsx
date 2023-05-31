@@ -10,7 +10,7 @@ const LoginPage = () => {
   const { isLoggedIn, setIsLoggedIn, getLogin } = useAuth();
 
   const [loginForm, setLoginForm] = useState({
-    email: "karthikgoud@gmail.com",
+    email: "vishalgoud@gmail.com",
     password: "karth@77",
   });
 
