@@ -1,4 +1,8 @@
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleRight,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "../Header/Header";
 import "./SignUpPage.css";
@@ -15,7 +19,10 @@ const SignUpPage = () => {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+
+  const [passwordType, setPasswordType] = useState("password");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,6 +42,10 @@ const SignUpPage = () => {
     const { value } = event.target;
     setSignUpForm((prev) => ({ ...prev, [fieldName]: value }));
   };
+
+  function handlePasswordType() {
+    setPasswordType((prev) => (prev === "password" ? "text" : "password"));
+  }
 
   return (
     <div>
@@ -75,11 +86,32 @@ const SignUpPage = () => {
           <div className="input-password">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
+              type={passwordType}
               id="password"
               placeholder="*********"
               value={signUpForm.password}
               onChange={(e) => fillFormValue(e, "password")}
+            />
+            <div className="show-password">
+              {passwordType === "password" && (
+                <FontAwesomeIcon onClick={handlePasswordType} icon={faEye} />
+              )}
+              {passwordType === "text" && (
+                <FontAwesomeIcon
+                  onClick={handlePasswordType}
+                  icon={faEyeSlash}
+                />
+              )}
+            </div>
+          </div>
+          <div className="input-password-confirm">
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              type={passwordType}
+              id="password"
+              placeholder="*********"
+              value={signUpForm.confirmPassword}
+              onChange={(e) => fillFormValue(e, "confirmPassword")}
             />
           </div>
           <div className="forgot-cont">
