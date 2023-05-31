@@ -4,6 +4,7 @@ import { useData } from "../../context/DataContext";
 import { calculateTotal } from "../../Services/Services";
 import CheckOutDetails from "../CheckOutDetails/CheckOutDetails";
 import AddressCard from "../AddressCard/AddressCard";
+import { NavLink } from "react-router-dom";
 
 const CheckOut = () => {
   const {
@@ -20,6 +21,9 @@ const CheckOut = () => {
             {addressList.map((address) => (
               <AddressCard address={address} />
             ))}
+            <NavLink className="checkout-add-address-btn" to="/userprofile">
+              Add a New Address
+            </NavLink>
           </div>
           <CheckOutDetails
             cartTotal={calculateTotal(cartData)}

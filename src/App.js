@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="app-container">
       <ToastContainer
-        position="bottom-right"
+        position="top-center"
         autoClose={false}
         newestOnTop={false}
         closeOnClick

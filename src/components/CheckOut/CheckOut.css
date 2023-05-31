@@ -19,3 +19,17 @@
 .addres-card-cont {
   width: 50%;
 }
+
+.checkout-add-address-btn {
+  text-decoration: none;
+  background: #29aabb;
+  padding: 0.6rem;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.checkout-add-address-btn:hover {
+  background: #044f59;
+}

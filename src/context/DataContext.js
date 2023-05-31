@@ -20,12 +20,12 @@ const initialStateFilter = {
 };
 
 const dummyAddress = {
-  name: "Vishal",
+  name: "Vishal Goud",
   houseNo: "45",
-  colony: "rainbow colony",
-  area: "hebbal",
-  city: "bangalore",
-  state: "karnataka",
+  colony: "Rainbow colony",
+  area: "Bogadi",
+  city: "Mysore",
+  state: "Karnataka",
   country: "INDIA",
   postalCode: "560056",
   phoneNo: "919923254239",
@@ -39,6 +39,7 @@ export const DataProvider = ({ children }) => {
     categoryData: [],
     addressList: [dummyAddress],
     loader: true,
+    orderAddress: {},
   });
   const [state, dispatch] = useReducer(filterReducer, initialStateFilter);
 
