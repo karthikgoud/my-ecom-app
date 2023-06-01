@@ -116,14 +116,14 @@ const Modal = ({ show, onClose, addressFields }) => {
           />
         </div>
         <div className="modal-footer">
-          <button className="modal-btn" onClick={onClose}>
-            Cancel
-          </button>
           <button className="modal-btn" onClick={handleSave}>
             Save
           </button>
           <button className="modal-btn" onClick={handleUpdate}>
             Update
+          </button>
+          <button className="modal-btn" onClick={onClose}>
+            Cancel
           </button>
         </div>
       </div>

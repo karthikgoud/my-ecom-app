@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./AddressForm.css";
 import { useData } from "../../../context/DataContext";
 import Modal from "../../Modal/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 const AddressForm = () => {
   const { productState, productDispatch } = useData();
@@ -51,7 +53,7 @@ const AddressForm = () => {
       <ul>
         {productState?.addressList?.map((address) => (
           <li className="address-list-card">
-            <div>
+            <div className="address-details">
               <div className="address-name">{address.name}</div>
               <div>
                 House no : {address.houseNo} , {address.colony}, {address.area},{" "}
@@ -60,18 +62,20 @@ const AddressForm = () => {
               </div>
               <div>Phone: {address.phoneNo}</div>
             </div>
-            <button
-              className="address-dele-btn"
-              onClick={() => handleDelete(address)}
-            >
-              X
-            </button>
-            <button
-              className="address-dele-btn"
-              onClick={() => handleEdit(address)}
-            >
-              edit
-            </button>
+            <div className="address-btn-edit-cont">
+              <button
+                className="address-dele-btn"
+                onClick={() => handleEdit(address)}
+              >
+                <FontAwesomeIcon icon={faPenToSquare} />
+              </button>
+              <button
+                className="address-dele-btn"
+                onClick={() => handleDelete(address)}
+              >
+                X
+              </button>
+            </div>
           </li>
         ))}
       </ul>

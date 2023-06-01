@@ -51,8 +51,15 @@ ul {
   box-shadow: 3px 2px 6px #0f355b;
   font-size: 0.8rem;
 }
+.address-details {
+  width: 80%;
+}
 
 .address-name {
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.address-btn-edit-cont button {
+  cursor: pointer;
 }
