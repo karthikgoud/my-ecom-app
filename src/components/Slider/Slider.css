@@ -1,0 +1,17 @@
+.carousal img {
+  width: 100%;
+  padding: 2rem;
+}
+
+.dots-cont {
+  padding: 0.5rem;
+}
+
+.dots {
+  padding: 0 0.8rem;
+}
+
+.dots svg {
+  width: 9px;
+  height: 9px;
+}

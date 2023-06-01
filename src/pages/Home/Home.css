@@ -3,3 +3,43 @@
   justify-content: center;
   align-items: center;
 }
+
+.carousal-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 3px 3px 10px grey;
+  /* background-color: rgb(206, 205, 205); */
+  margin: 1rem 0;
+}
+
+.carousal-cont {
+  max-width: 900px;
+}
+
+.carousal-show-btn-cont {
+  background-color: yellow;
+  text-align: center;
+}
+
+.btn-shop-now {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: black;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.btn-shop-now button {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgb(46, 45, 45);
+  text-align: center;
+}
+
+.btn-shop-now button:hover {
+  color: gray;
+}
