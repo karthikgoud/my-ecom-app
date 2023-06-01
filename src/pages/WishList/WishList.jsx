@@ -1,7 +1,7 @@
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import "./WishList.css";
 
-import WishCard from "../WishCard/WishCard";
+import WishCard from "../../components/WishCard/WishCard";
 import { useData } from "../../context/DataContext";
 
 const WishList = () => {

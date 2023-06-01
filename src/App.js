@@ -1,19 +1,19 @@
 import "./App.css";
-import Home from "./components/Home/Home";
+import Home from "./pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
-import WishList from "./components/WishList/WishList";
-import Cart from "./components/Cart/Cart";
-import ProductListing from "./components/ProductListing/ProductListing";
+import WishList from "./pages/WishList/WishList";
+import Cart from "./pages/Cart/Cart";
+import ProductListing from "./pages/ProductListing/ProductListing";
 import Mockman from "mockman-js";
-import ProductDetails from "./components/ProductDetails/ProductDetails";
-import LoginPage from "./components/LoginPage/LoginPage";
-import SignUpPage from "./components/SignUpPage/SignUpPage";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import RequiresAuth from "./Auth/RequiresAuth";
 import { useAuth } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UserProfile from "./components/UserProfile/UserProfile";
-import CheckOut from "./components/CheckOut/CheckOut";
+import CheckOut from "./pages/CheckOut/CheckOut";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import UserProfile from "./pages/UserProfilePage/UserProfile";
+import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 function App() {
   const { isLoggedIn, isSignUp } = useAuth();

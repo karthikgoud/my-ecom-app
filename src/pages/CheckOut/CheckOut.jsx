@@ -1,9 +1,9 @@
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import "./CheckOut.css";
 import { useData } from "../../context/DataContext";
 import { calculateTotal } from "../../Services/Services";
-import CheckOutDetails from "../CheckOutDetails/CheckOutDetails";
-import AddressCard from "../AddressCard/AddressCard";
+import CheckOutDetails from "../../components/CheckOutDetails/CheckOutDetails";
+import AddressCard from "../../components/AddressCard/AddressCard";
 import { NavLink } from "react-router-dom";
 
 const CheckOut = () => {

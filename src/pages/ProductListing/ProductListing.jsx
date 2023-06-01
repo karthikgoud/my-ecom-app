@@ -1,10 +1,10 @@
-import Header from "../Header/Header";
-import ProductListCard from "../ProductListCard/ProductListCard";
-import Filters from "../Filters-component/Filters";
+import Header from "../../components/Header/Header";
+import ProductListCard from "../../components/ProductListCard/ProductListCard";
+import Filters from "../../components/Filters-component/Filters";
 
 import "./ProductListing.css";
 import { useData } from "../../context/DataContext";
-import LoaderProductList from "../LoaderProductList/LoaderProductList";
+import LoaderProductList from "../../components/LoaderProductList/LoaderProductList";
 
 const ProductListing = () => {
   const {

@@ -1,9 +1,9 @@
-import Category from "../Category/Category";
-import Header from "../Header/Header";
-import HeroCarousel from "../HeroCarousel/HeroCarousel";
-import NewArrivals from "../NewArrivals/NewArrivals";
+import Category from "../../components/Category/Category";
+import Header from "../../components/Header/Header";
+import HeroCarousel from "../../components/HeroCarousel/HeroCarousel";
+import NewArrivals from "../../components/NewArrivals/NewArrivals";
 import "./Home.css";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import { useData } from "../../context/DataContext";
 
 const Home = () => {

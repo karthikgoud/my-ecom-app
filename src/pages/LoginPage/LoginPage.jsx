@@ -1,10 +1,10 @@
 import "./LoginPage.css";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Header from "../Header/Header";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import Header from "../../components/Header/Header";
 
 const LoginPage = () => {
   const { isLoggedIn, setIsLoggedIn, getLogin, user } = useAuth();

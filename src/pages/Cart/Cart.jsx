@@ -1,8 +1,8 @@
 import { calculateTotal } from "../../Services/Services";
 import { useData } from "../../context/DataContext";
-import CartPageCard from "../CartPageCard/CartPageCard";
-import CartPriceDetails from "../CartPriceDetails/CartPriceDetails";
-import Header from "../Header/Header";
+import CartPageCard from "../../components/CartPageCard/CartPageCard";
+import CartPriceDetails from "../../components/CartPriceDetails/CartPriceDetails";
+import Header from "../../components/Header/Header";
 import "./Cart.css";
 
 const Cart = () => {

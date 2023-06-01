@@ -4,11 +4,11 @@ import {
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Header from "../Header/Header";
 import "./SignUpPage.css";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
+import Header from "../../components/Header/Header";
 
 const SignUpPage = () => {
   const { isLoggedIn, setIsLoggedIn, getSignUp, isSignUp, setIsSignUp } =

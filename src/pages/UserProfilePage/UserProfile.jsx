@@ -1,8 +1,8 @@
-import Header from "../Header/Header";
 import "./UserProfile.css";
 import { useAuth } from "../../context/AuthContext";
-import ProfileCard from "./ProfileCard/ProfileCard";
-import AddressForm from "./AddressForm/AddressForm";
+import Header from "../../components/Header/Header";
+import ProfileCard from "../../components/UserProfile/ProfileCard/ProfileCard";
+import AddressForm from "../../components/UserProfile/AddressForm/AddressForm";
 
 const UserProfile = () => {
   const { isLoggedIn, setIsLoggedIn, setIsSignUp, user } = useAuth();
