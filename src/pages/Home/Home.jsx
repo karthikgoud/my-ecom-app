@@ -20,6 +20,7 @@ const Home = () => {
       ) : (
         <div>
           <Header />
+          <Category />
           <div className="carousal-section">
             <div className="carousal-cont">
               <Slider />
@@ -30,7 +31,7 @@ const Home = () => {
               </button>
             </NavLink>
           </div>
-          <Category />
+
           <NewArrivals />
         </div>
       )}
