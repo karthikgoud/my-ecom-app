@@ -3,17 +3,14 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./ProductListCard.css";
-import { useData } from "../../context/DataContext";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWish } from "../../context/WishContext";
 
 const ProductListCard = ({ item }) => {
-  const { wishUpdate } = useData();
-
   const { addToCart } = useCart();
 
-  const { addWish, deleteWish } = useWish();
+  const { addWish, deleteWish, wishUpdate } = useWish();
 
   return (
     <div className="product-card-container">

@@ -26,8 +26,6 @@ export const AuthProvider = ({ children }) => {
       setToken(encodedToken);
       localStorage.setItem("user", foundUser);
       setUser(foundUser);
-
-      // localStorage.setItem("token", encodedToken);
     } catch (e) {
       console.log(e);
     }
@@ -53,8 +51,6 @@ export const AuthProvider = ({ children }) => {
       setToken(encodedToken);
       localStorage.setItem("user", createdUser);
       setUser(createdUser);
-
-      // localStorage.setItem("token", encodedToken);
     } catch (e) {
       console.log(e);
     }

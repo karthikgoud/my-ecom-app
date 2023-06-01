@@ -1,11 +1,21 @@
 import { createContext, useContext, useEffect } from "react";
 import { useData } from "./DataContext";
 import { ToastHandler } from "../components/Toast/Toast";
+import { useAuth } from "./AuthContext";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { productDispatch, toggleAddToCartBtn } = useData();
+  const { productDispatch, productState } = useData();
+
+  const { isLoggedIn, isSignUp } = useAuth();
+
+  function toggleAddToCartBtn(id) {
+    const carted = [...productState.data].map((item) =>
+      item._id === id ? { ...item, isCarted: !item.isCarted } : item
+    );
+    productDispatch({ type: "TOGGLE_ADD_TO_CART_BTN", payload: carted });
+  }
 
   const getCart = async () => {
     try {
@@ -26,47 +36,49 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (item) => {
-    const keyToken = localStorage.getItem("token");
-
-    const res = await fetch("/api/user/cart", {
-      method: "GET",
-      headers: {
-        authorization: keyToken,
-      },
-    });
-
-    const cartRes = await res.json();
-
-    const isInCart = cartRes.cart.some((product) => product._id === item._id);
-
-    if (isInCart) {
-      addOne(item);
+    if (!isLoggedIn && !isSignUp) {
+      ToastHandler("warn", "Login to access cart");
     } else {
-      try {
-        const keyToken = localStorage.getItem("token");
+      const keyToken = localStorage.getItem("token");
 
-        const data = {
-          product: item,
-        };
+      const res = await fetch("/api/user/cart", {
+        method: "GET",
+        headers: {
+          authorization: keyToken,
+        },
+      });
 
-        const res = await fetch("/api/user/cart", {
-          method: "POST",
-          headers: {
-            authorization: keyToken,
-          },
-          body: JSON.stringify(data),
-        });
+      const cartRes = await res.json();
 
-        const addCart = await res.json();
+      const isInCart = cartRes.cart.some((product) => product._id === item._id);
 
-        console.log("isInCart", isInCart);
+      if (isInCart) {
+        addOne(item);
+      } else {
+        try {
+          const keyToken = localStorage.getItem("token");
 
-        productDispatch({ type: "SET_CART", payload: addCart.cart });
+          const data = {
+            product: item,
+          };
 
-        toggleAddToCartBtn(item._id);
-        ToastHandler("success", "Added to Cart");
-      } catch (e) {
-        console.log(e);
+          const res = await fetch("/api/user/cart", {
+            method: "POST",
+            headers: {
+              authorization: keyToken,
+            },
+            body: JSON.stringify(data),
+          });
+
+          const addCart = await res.json();
+
+          productDispatch({ type: "SET_CART", payload: addCart.cart });
+
+          toggleAddToCartBtn(item._id);
+          ToastHandler("success", "Added to Cart");
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };
@@ -107,9 +119,7 @@ export const CartProvider = ({ children }) => {
         body: JSON.stringify(data),
       });
       const wishData = await res.json();
-      // console.log("from context", wishData.wishlist);
       productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-      // setWish(wishData.wishlist);
       ToastHandler("success", "Added to WishList");
     } catch (e) {
       console.error(e);
@@ -179,6 +189,7 @@ export const CartProvider = ({ children }) => {
         delCartMoveToWish,
         removeOne,
         addOne,
+        toggleAddToCartBtn,
       }}
     >
       {children}

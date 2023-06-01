@@ -59,8 +59,6 @@ export const DataProvider = ({ children }) => {
       const myCategory = await res.json();
       productDispatch({ type: "GET_CATEGORY", payload: myCategory.categories });
       productDispatch({ type: "SET_LOADER", payload: false });
-
-      // setLoader(false);
     } catch (e) {
       console.error(e);
     }
@@ -70,23 +68,6 @@ export const DataProvider = ({ children }) => {
     getData();
     getCategory();
   }, []);
-
-  // iswish
-
-  function wishUpdate(id) {
-    const wishUpdate = [...productState.data].map((item) =>
-      item._id === id ? { ...item, isWished: !item.isWished } : item
-    );
-    productDispatch({ type: "WISH_UPDATE", payload: wishUpdate });
-  }
-
-  function toggleAddToCartBtn(id) {
-    console.log("id", id);
-    const carted = [...productState.data].map((item) =>
-      item._id === id ? { ...item, isCarted: !item.isCarted } : item
-    );
-    productDispatch({ type: "TOGGLE_ADD_TO_CART_BTN", payload: carted });
-  }
 
   const transformedProducts = () => {
     let sortedProducts = productState.data;
@@ -142,8 +123,6 @@ export const DataProvider = ({ children }) => {
         transformedProducts,
         state,
         dispatch,
-        wishUpdate,
-        toggleAddToCartBtn,
       }}
     >
       {children}

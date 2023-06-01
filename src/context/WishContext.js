@@ -1,15 +1,27 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useData } from "./DataContext";
 import { useCart } from "./CartContext";
 import { ToastHandler } from "../components/Toast/Toast";
+import { useAuth } from "./AuthContext";
 
 export const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-  const { wish, setWish, productState, productDispatch, wishUpdate } =
-    useData();
+  const { wish, setWish, productDispatch, productState } = useData();
 
   const { addToCart } = useCart();
+
+  const { isLoggedIn, isSignUp } = useAuth();
+
+  function wishUpdate(id) {
+    if (!isLoggedIn && !isSignUp) {
+      return null;
+    }
+    const wishUpdate = [...productState.data].map((item) =>
+      item._id === id ? { ...item, isWished: !item.isWished } : item
+    );
+    productDispatch({ type: "WISH_UPDATE", payload: wishUpdate });
+  }
 
   const getWish = async () => {
     try {
@@ -21,37 +33,36 @@ export const WishProvider = ({ children }) => {
         },
       });
       const wishData = await res.json();
-      // console.log("inintial wish", wishData.wishlist);
       productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-      // setWish(wishData.wishlist);
     } catch (e) {
       console.error(e);
     }
   };
 
   const addWish = async (item) => {
-    // console.log("wishitem", item);
-    try {
-      const keyToken = localStorage.getItem("token");
+    if (!isLoggedIn && !isSignUp) {
+      ToastHandler("warn", "Login to access wish cart");
+    } else {
+      try {
+        const keyToken = localStorage.getItem("token");
 
-      const data = {
-        product: item,
-      };
+        const data = {
+          product: item,
+        };
 
-      const res = await fetch("/api/user/wishlist", {
-        method: "POST",
-        headers: {
-          authorization: keyToken,
-        },
-        body: JSON.stringify(data),
-      });
-      const wishData = await res.json();
-      // console.log("from context", wishData.wishlist);
-      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-      // setWish(wishData.wishlist);
-      ToastHandler("success", "Added to WishList");
-    } catch (e) {
-      console.error(e);
+        const res = await fetch("/api/user/wishlist", {
+          method: "POST",
+          headers: {
+            authorization: keyToken,
+          },
+          body: JSON.stringify(data),
+        });
+        const wishData = await res.json();
+        productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+        ToastHandler("success", "Added to WishList");
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
@@ -67,7 +78,6 @@ export const WishProvider = ({ children }) => {
       const wishData = await res.json();
       wishUpdate(id);
       productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-      // setWish(wishData.wishlist);
       ToastHandler("warn", "Removed from WishList");
     } catch (e) {
       console.log(e);
@@ -86,7 +96,14 @@ export const WishProvider = ({ children }) => {
 
   return (
     <WishContext.Provider
-      value={{ wish, setWish, addWish, deleteWish, delWishMoveToCart }}
+      value={{
+        wish,
+        setWish,
+        wishUpdate,
+        addWish,
+        deleteWish,
+        delWishMoveToCart,
+      }}
     >
       {children}
     </WishContext.Provider>
