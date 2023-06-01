@@ -12,8 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "../../context/DataContext";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useAuth } from "../../context/AuthContext";
-import { useCart } from "../../context/CartContext";
-import { useWish } from "../../context/WishContext";
+import { useLocation } from "react-router";
 
 const Header = () => {
   const {
@@ -27,6 +26,8 @@ const Header = () => {
     setIsLoggedIn(false);
     setIsSignUp(false);
   }
+
+  const productListPath = useLocation();
 
   return (
     <nav className="nav-container">
@@ -42,25 +43,22 @@ const Header = () => {
         />
         <div className="title">All-In-One-Shop</div>
       </NavLink>
-      <div className="search-container">
-        <FontAwesomeIcon
-          className="search-icon"
-          icon={faMagnifyingGlass}
-          style={{ color: "#999a9a" }}
-        />
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) =>
-            dispatch({ type: "SEARCH_BOX", payLoad: e.target.value })
-          }
-        />
-        {/* <button
-          onClick={() => dispatch({ type: "SEARCH_BOX", payload: searchText })}
-        >
-          Search
-        </button> */}
-      </div>
+      {productListPath.pathname === "/product" && (
+        <div className="search-container">
+          <FontAwesomeIcon
+            className="search-icon"
+            icon={faMagnifyingGlass}
+            style={{ color: "#999a9a" }}
+          />
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) =>
+              dispatch({ type: "SEARCH_BOX", payLoad: e.target.value })
+            }
+          />
+        </div>
+      )}
       <div className="nav-right-container">
         {!isLoggedIn && (
           <NavLink to="/login">
