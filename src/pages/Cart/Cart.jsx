@@ -7,7 +7,7 @@ import "./Cart.css";
 
 const Cart = () => {
   const {
-    productState: { cartData },
+    productState: { cartData, couponDiscount },
   } = useData();
 
   return (
@@ -27,7 +27,9 @@ const Cart = () => {
             ))}
           </div>
           {cartData?.length !== 0 && (
-            <CartPriceDetails cartTotal={calculateTotal(cartData)} />
+            <CartPriceDetails
+              cartTotal={calculateTotal(cartData, couponDiscount ?? 1)}
+            />
           )}
         </div>
       </div>

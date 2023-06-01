@@ -40,7 +40,6 @@ const AddressForm = () => {
   }
 
   function handleEdit(address) {
-    // console.log(address);
     modalHandler();
     setUpdateAddress((prev) => ({ ...prev, ...address }));
   }

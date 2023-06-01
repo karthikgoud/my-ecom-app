@@ -1,10 +1,13 @@
 import { useData } from "../../context/DataContext";
 import { ToastHandler } from "../Toast/Toast";
 import "./CheckOutDetails.css";
+import { faTag, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CheckOutDetails = ({ cartTotal, address }) => {
   const {
-    productState: { cartData, orderAddress },
+    productDispatch,
+    productState: { cartData, orderAddress, couponDiscount },
   } = useData();
 
   function handlePlaceOrder() {
@@ -45,6 +48,15 @@ const CheckOutDetails = ({ cartTotal, address }) => {
         <p>Delivery charges </p>
         <p>₹{cartTotal.deliveryTotal}</p>
       </div>
+      {couponDiscount !== null && (
+        <div className="cart-price-list-item coupon-close">
+          <p>
+            {couponDiscount === 0.5
+              ? "50% Coupon Discount Applied"
+              : "10% Coupon Discount Applied"}
+          </p>
+        </div>
+      )}
       <div className="total-cont">
         <div>Total Amount</div>
         <div>₹{cartTotal.grandTotal}</div>

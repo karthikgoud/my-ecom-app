@@ -40,6 +40,7 @@ export const DataProvider = ({ children }) => {
     addressList: [dummyAddress],
     loader: true,
     orderAddress: {},
+    couponDiscount: null,
   });
   const [state, dispatch] = useReducer(filterReducer, initialStateFilter);
 

@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const CheckOut = () => {
   const {
-    productState: { cartData, addressList },
+    productState: { cartData, addressList, couponDiscount },
   } = useData();
 
   return (
@@ -26,7 +26,7 @@ const CheckOut = () => {
             </NavLink>
           </div>
           <CheckOutDetails
-            cartTotal={calculateTotal(cartData)}
+            cartTotal={calculateTotal(cartData, couponDiscount ?? 1)}
             address={addressList[0]}
           />
         </div>

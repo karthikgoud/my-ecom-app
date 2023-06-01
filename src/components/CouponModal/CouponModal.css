@@ -1,0 +1,48 @@
+.coupon-modal {
+  border: 3px solid red;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coupon-modal-header,
+.coupon-modal-footer {
+  padding: 10px;
+}
+
+.coupon-modal-content {
+  width: max-content;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.coupon-modal-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.coupon-modal-btn {
+  padding: 5px 10px;
+  margin: 0 10px;
+  border: 1px solid black;
+}
+
+.coupon-modal-btn:hover {
+  cursor: pointer;
+  background-color: greenyellow;
+}
+
+.coupon-close:hover {
+  cursor: pointer;
+}

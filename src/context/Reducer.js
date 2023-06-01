@@ -41,6 +41,12 @@ export const productReducer = (state, action) => {
       );
       return { ...state, addressList: [...updatedAddress] };
 
+    case "COUPON_DISCOUNT":
+      return { ...state, couponDiscount: action.payload };
+
+    case "RESET_COUPON":
+      return { ...state, couponDiscount: action.payload };
+
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-export const calculateTotal = (cartData) => {
+export const calculateTotal = (cartData, couponDiscount = 1) => {
   const itemPriceTotal = cartData?.reduce(
     (acc, cur) => acc + Number(cur.price * cur.qty),
     0
@@ -14,7 +14,10 @@ export const calculateTotal = (cartData) => {
     0
   );
 
-  const grandTotal = itemPriceTotal - itemDiscount + deliveryTotal;
+  const grandTotal =
+    (itemPriceTotal - itemDiscount + deliveryTotal) * couponDiscount;
+
+  const moneySavedTotal = itemPriceTotal - itemDiscount + deliveryTotal;
 
   const totalItems = cartData?.reduce((acc, cur) => acc + cur.qty, 0);
 
@@ -24,6 +27,7 @@ export const calculateTotal = (cartData) => {
     deliveryTotal,
     grandTotal,
     totalItems,
+    moneySavedTotal,
   };
 
   return cartTotal;

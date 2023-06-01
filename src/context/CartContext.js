@@ -54,6 +54,7 @@ export const CartProvider = ({ children }) => {
 
       if (isInCart) {
         addOne(item);
+        ToastHandler("success", "Added to Cart");
       } else {
         try {
           const keyToken = localStorage.getItem("token");

@@ -75,3 +75,10 @@
 .NavLink {
   text-decoration: none;
 }
+.coupon-text {
+  color: #de3163;
+}
+
+.coupon-close {
+  cursor: pointer;
+}
