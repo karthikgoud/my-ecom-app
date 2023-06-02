@@ -1,4 +1,3 @@
-import RadioButton from "../Radio-button/RadioButton";
 import "./Filters.css";
 import { useData } from "../../context/DataContext";
 
@@ -7,7 +6,6 @@ const Filters = () => {
 
   function handleCategoryChange(e, option) {
     let check = e.target.checked;
-
     dispatch({
       type: "CATEGORY",
       payload: {

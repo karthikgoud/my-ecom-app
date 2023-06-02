@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 import {
   faListUl,
-  faHouse,
   faMagnifyingGlass,
   faCartShopping,
   faCircleUser,
@@ -16,6 +15,7 @@ import { useLocation } from "react-router";
 
 const Header = () => {
   const {
+    state,
     dispatch,
     productState: { cartData, wishListData },
   } = useData();
@@ -53,8 +53,9 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search..."
+            value={state.searchValue}
             onChange={(e) =>
-              dispatch({ type: "SEARCH_BOX", payLoad: e.target.value })
+              dispatch({ type: "SEARCH_BOX", payload: e.target.value })
             }
           />
         </div>

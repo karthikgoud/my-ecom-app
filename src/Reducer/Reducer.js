@@ -55,7 +55,6 @@ export const productReducer = (state, action) => {
 };
 
 export const filterReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "SORT-HIGH-TO-LOW":
       return { ...state, sort: action.payload };
@@ -88,7 +87,7 @@ export const filterReducer = (state, action) => {
         starRating: null,
         rangeValue: 0,
         category: [],
-        searchValue: null,
+        searchValue: "",
       };
     default:
       return state;

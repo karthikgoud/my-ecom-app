@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { filterReducer, productReducer } from "./Reducer";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { filterReducer, productReducer } from "../Reducer/Reducer";
 
 export const DataContext = createContext();
 
@@ -80,6 +74,15 @@ export const DataProvider = ({ children }) => {
     return sortedProducts;
   };
 
+  const getProductBySearch = (products, searchValue) => {
+    const sortedProducts = products.filter((product) =>
+      searchValue
+        ? product.title.toLowerCase().includes(searchValue.toLowerCase())
+        : product
+    );
+    return sortedProducts;
+  };
+
   const getProductsByRange = (products, rangeValue) => {
     const sortedProducts = products.filter((product) =>
       rangeValue
@@ -108,8 +111,10 @@ export const DataProvider = ({ children }) => {
 
   const sortedProducts = getSortedProducts(productState.data, state.sort);
 
+  const filterSearch = getProductBySearch(sortedProducts, state.searchValue);
+
   const filterRatingProducts = getProductsByRating(
-    sortedProducts,
+    filterSearch,
     state.starRating
   );
   const filterRangeProducts = getProductsByRange(
@@ -120,54 +125,6 @@ export const DataProvider = ({ children }) => {
     filterRangeProducts,
     state.category
   );
-
-  console.log("filter", state);
-
-  // const transformedProducts = () => {
-  //   let sortedProducts = productState.data;
-
-  //   if (state.sort) {
-  //     sortedProducts = sortedProducts.toSorted((a, b) =>
-  //       state.sort === "highToLow" ? b.price - a.price : a.price - b.price
-  //     );
-  //   }
-
-  //   if (state.searchValue) {
-  //     sortedProducts = sortedProducts.filter((item) =>
-  //       item.title.toLowerCase().includes(state.searchValue.toLowerCase())
-  //     );
-  //   }
-
-  //   if (state.rangeValue) {
-  //     sortedProducts = sortedProducts.filter(
-  //       (item) => Number(item.price) <= Number(state.rangeValue)
-  //     );
-  //   }
-
-  //   if (state.starRating) {
-  //     sortedProducts = sortedProducts.filter(
-  //       (item) => item.rating >= state.starRating
-  //     );
-  //   }
-
-  //   if (state.menCategory) {
-  //     sortedProducts = sortedProducts.filter(
-  //       (item) => item.categoryName === "Men"
-  //     );
-  //   }
-  //   if (state.womenCategory) {
-  //     sortedProducts = sortedProducts.filter(
-  //       (item) => item.categoryName === "Women"
-  //     );
-  //   }
-  //   if (state.kidsCategory) {
-  //     sortedProducts = sortedProducts.filter(
-  //       (item) => item.categoryName === "Kids"
-  //     );
-  //   }
-
-  //   return sortedProducts;
-  // };
 
   return (
     <DataContext.Provider
