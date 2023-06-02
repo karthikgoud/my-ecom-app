@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import { useData } from "../../context/DataContext";
 import Slider from "../../components/Slider/Slider";
 import { NavLink } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const {
@@ -31,8 +32,8 @@ const Home = () => {
               </button>
             </NavLink>
           </div>
-
           <NewArrivals />
+          <Footer />
         </div>
       )}
     </div>

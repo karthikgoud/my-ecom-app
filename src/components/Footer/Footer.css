@@ -1,0 +1,37 @@
+.footer-cont {
+  background-color: #f2f4f4;
+  height: 100px;
+}
+
+.footer-content {
+  height: 100%;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-cont span {
+  font-weight: 700;
+}
+
+.page-links-cont {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-icons-cont {
+  display: flex;
+  gap: 1rem;
+}
+
+.icons img {
+  width: 30px;
+}
