@@ -13,9 +13,7 @@ const initialStateFilter = {
   sort: null,
   starRating: null,
   rangeValue: null,
-  menCategory: false,
-  womenCategory: false,
-  kidsCategory: false,
+  category: [],
   searchValue: null,
 };
 
@@ -70,60 +68,114 @@ export const DataProvider = ({ children }) => {
     getCategory();
   }, []);
 
-  const transformedProducts = () => {
-    let sortedProducts = productState.data;
+  const getSortedProducts = (products, sortValue) => {
+    const sortedProducts = products.toSorted((a, b) =>
+      sortValue === "highToLow"
+        ? b.price - a.price
+        : sortValue === "lowToHigh"
+        ? a.price - b.price
+        : products
+    );
+    return sortedProducts;
+  };
 
-    if (state.sort) {
-      sortedProducts = sortedProducts.toSorted((a, b) =>
-        state.sort === "highToLow" ? b.price - a.price : a.price - b.price
-      );
-    }
+  const getProductsByRange = (products, rangeValue) => {
+    const sortedProducts = products.filter((product) =>
+      rangeValue
+        ? Number(product.disCountedPrice) <= Number(rangeValue)
+        : product
+    );
+    return sortedProducts;
+  };
 
-    if (state.searchValue) {
-      sortedProducts = sortedProducts.filter((item) =>
-        item.title.toLowerCase().includes(state.searchValue.toLowerCase())
-      );
-    }
+  const getProductsByRating = (products, ratingValue) => {
+    const sortedProducts = products.filter((product) =>
+      ratingValue ? product.rating >= ratingValue : product
+    );
+    return sortedProducts;
+  };
 
-    if (state.rangeValue) {
-      sortedProducts = sortedProducts.filter(
-        (item) => Number(item.price) <= Number(state.rangeValue)
-      );
-    }
-
-    if (state.starRating) {
-      sortedProducts = sortedProducts.filter(
-        (item) => item.rating >= state.starRating
-      );
-    }
-
-    if (state.menCategory) {
-      sortedProducts = sortedProducts.filter(
-        (item) => item.categoryName === "Men"
-      );
-    }
-    if (state.womenCategory) {
-      sortedProducts = sortedProducts.filter(
-        (item) => item.categoryName === "Women"
-      );
-    }
-    if (state.kidsCategory) {
-      sortedProducts = sortedProducts.filter(
-        (item) => item.categoryName === "Kids"
-      );
-    }
+  const getProductsByCategory = (products, categoryArr) => {
+    const sortedProducts = products.filter((product) =>
+      categoryArr.length > 0
+        ? categoryArr.includes(product.categoryName)
+        : product
+    );
 
     return sortedProducts;
   };
+
+  const sortedProducts = getSortedProducts(productState.data, state.sort);
+
+  const filterRatingProducts = getProductsByRating(
+    sortedProducts,
+    state.starRating
+  );
+  const filterRangeProducts = getProductsByRange(
+    filterRatingProducts,
+    state.rangeValue
+  );
+  const filteredProducts = getProductsByCategory(
+    filterRangeProducts,
+    state.category
+  );
+
+  console.log("filter", state);
+
+  // const transformedProducts = () => {
+  //   let sortedProducts = productState.data;
+
+  //   if (state.sort) {
+  //     sortedProducts = sortedProducts.toSorted((a, b) =>
+  //       state.sort === "highToLow" ? b.price - a.price : a.price - b.price
+  //     );
+  //   }
+
+  //   if (state.searchValue) {
+  //     sortedProducts = sortedProducts.filter((item) =>
+  //       item.title.toLowerCase().includes(state.searchValue.toLowerCase())
+  //     );
+  //   }
+
+  //   if (state.rangeValue) {
+  //     sortedProducts = sortedProducts.filter(
+  //       (item) => Number(item.price) <= Number(state.rangeValue)
+  //     );
+  //   }
+
+  //   if (state.starRating) {
+  //     sortedProducts = sortedProducts.filter(
+  //       (item) => item.rating >= state.starRating
+  //     );
+  //   }
+
+  //   if (state.menCategory) {
+  //     sortedProducts = sortedProducts.filter(
+  //       (item) => item.categoryName === "Men"
+  //     );
+  //   }
+  //   if (state.womenCategory) {
+  //     sortedProducts = sortedProducts.filter(
+  //       (item) => item.categoryName === "Women"
+  //     );
+  //   }
+  //   if (state.kidsCategory) {
+  //     sortedProducts = sortedProducts.filter(
+  //       (item) => item.categoryName === "Kids"
+  //     );
+  //   }
+
+  //   return sortedProducts;
+  // };
 
   return (
     <DataContext.Provider
       value={{
         productState,
         productDispatch,
-        transformedProducts,
         state,
         dispatch,
+        filteredProducts,
       }}
     >
       {children}

@@ -12,7 +12,7 @@ const Category = () => {
         <CategoryCard
           key={item.categoryName}
           text={item.categoryName}
-          type={item.type}
+          load={item.categoryName}
         />
       ))}
     </div>

@@ -53,32 +53,39 @@ export const productReducer = (state, action) => {
 };
 
 export const filterReducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case "SORT-HIGH-TO-LOW":
-      return { ...state, sort: action.payLoad };
+      return { ...state, sort: action.payload };
     case "SORT-LOW-TO-HIGH":
-      return { ...state, sort: action.payLoad };
-    case "FILTER_MEN":
-      return { ...state, menCategory: !state.menCategory };
-    case "FILTER_WOMEN":
-      return { ...state, womenCategory: !state.womenCategory };
-    case "FILTER_KIDS":
-      return { ...state, kidsCategory: !state.kidsCategory };
+      return { ...state, sort: action.payload };
+    case "CATEGORY":
+      return {
+        ...state,
+        category: action.payload.check
+          ? [...state.category, action.payload.option]
+          : state.category.length > 0
+          ? state.category.filter(
+              (categoryValue) => categoryValue !== action.payload.option
+            )
+          : [],
+      };
+    case "CATEGORY_NAVIGATE":
+      return { ...state, category: [action.payload] };
+
     case "FILTER-RATING":
-      return { ...state, starRating: action.payLoad };
+      return { ...state, starRating: action.payload };
     case "RANGE_FILTER":
-      return { ...state, rangeValue: action.payLoad };
+      return { ...state, rangeValue: action.payload };
     case "SEARCH_BOX":
-      return { ...state, searchValue: action.payLoad };
+      return { ...state, searchValue: action.payload };
     case "RESET":
       return {
         ...state,
         sort: null,
         starRating: null,
-        rangeValue: null,
-        menCategory: false,
-        womenCategory: false,
-        kidsCategory: false,
+        rangeValue: 0,
+        category: [],
         searchValue: null,
       };
     default:

@@ -8,7 +8,7 @@ import LoaderProductList from "../../components/LoaderProductList/LoaderProductL
 
 const ProductListing = () => {
   const {
-    transformedProducts,
+    filteredProducts,
     productState: { loader },
   } = useData();
 
@@ -22,7 +22,7 @@ const ProductListing = () => {
             <LoaderProductList />
           ) : (
             <div className="productlist-container">
-              {transformedProducts()?.map((item) => (
+              {filteredProducts?.map((item) => (
                 <ProductListCard key={item._id} item={item} />
               ))}
             </div>
