@@ -37,7 +37,9 @@ export const productReducer = (state, action) => {
 
     case "UPDATE_ADDRESS":
       const updatedAddress = state.addressList.map((eachAddress) =>
-        eachAddress.name === action.payload.name ? action.payload : eachAddress
+        eachAddress.idAddress === action.payload.idAddress
+          ? action.payload
+          : eachAddress
       );
       return { ...state, addressList: [...updatedAddress] };
 
