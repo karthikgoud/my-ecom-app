@@ -5,6 +5,18 @@ import { useData } from "../../context/DataContext";
 const Filters = () => {
   const { dispatch, state } = useData();
 
+  function handleCategoryChange(e, option) {
+    let check = e.target.checked;
+
+    dispatch({
+      type: "CATEGORY",
+      payload: {
+        option,
+        check,
+      },
+    });
+  }
+
   return (
     <div className="filter-container flex">
       <div className="filter-header">
@@ -16,48 +28,58 @@ const Filters = () => {
           Clear
         </button>
       </div>
+
+      {/* range filter */}
+
       <div className="flex">
-        <p className="title">Price</p>
-        <input
-          type="range"
-          min="0"
-          max="5000"
-          step="100"
-          defaultValue={0}
-          onChange={(e) =>
-            dispatch({ type: "RANGE_FILTER", payLoad: e.target.value })
-          }
-        />
-        <input type="text" value={state.rangeValue} />
+        <p className="title">Filter By Price</p>
+        <label>
+          <input
+            type="range"
+            min="0"
+            max="5000"
+            step="100"
+            value={state.rangeValue}
+            onChange={(e) =>
+              dispatch({ type: "RANGE_FILTER", payload: e.target.value })
+            }
+          />
+          {state.rangeValue > 0 && <div>{state.rangeValue}</div>}
+        </label>
       </div>
+
+      {/* category filter */}
+
       <div className="flex">
         <p className="title">Category</p>
-
         <label>
           <input
             type="checkbox"
-            checked={state.menCategory}
-            onChange={() => dispatch({ type: "FILTER_MEN" })}
+            checked={state.category.includes("Men")}
+            onChange={(e) => handleCategoryChange(e, "Men")}
           />
           Men Clothing
         </label>
         <label>
           <input
             type="checkbox"
-            checked={state.womenCategory}
-            onChange={() => dispatch({ type: "FILTER_WOMEN" })}
+            checked={state.category.includes("Women")}
+            onChange={(e) => handleCategoryChange(e, "Women")}
           />
           Women Clothing
         </label>
         <label>
           <input
             type="checkbox"
-            checked={state.kidsCategory}
-            onChange={() => dispatch({ type: "FILTER_KIDS" })}
+            checked={state.category.includes("Kids")}
+            onChange={(e) => handleCategoryChange(e, "Kids")}
           />
           Kids Clothing
         </label>
       </div>
+
+      {/* rating filter */}
+
       <div className="flex">
         <p className="title">Rating</p>
         <label>
@@ -66,7 +88,7 @@ const Filters = () => {
             type="radio"
             defaultValue="4"
             checked={state.starRating === "4"}
-            onChange={() => dispatch({ type: "FILTER-RATING", payLoad: "4" })}
+            onChange={() => dispatch({ type: "FILTER-RATING", payload: "4" })}
           />
           4 stars & above
         </label>
@@ -76,7 +98,7 @@ const Filters = () => {
             type="radio"
             defaultValue="3"
             checked={state.starRating === "3"}
-            onChange={() => dispatch({ type: "FILTER-RATING", payLoad: "3" })}
+            onChange={() => dispatch({ type: "FILTER-RATING", payload: "3" })}
           />
           3 stars & above
         </label>
@@ -86,7 +108,7 @@ const Filters = () => {
             type="radio"
             defaultValue="2"
             checked={state.starRating === "2"}
-            onChange={() => dispatch({ type: "FILTER-RATING", payLoad: "2" })}
+            onChange={() => dispatch({ type: "FILTER-RATING", payload: "2" })}
           />
           2 stars & above
         </label>
@@ -96,11 +118,14 @@ const Filters = () => {
             type="radio"
             defaultValue="1"
             checked={state.starRating === "1"}
-            onChange={() => dispatch({ type: "FILTER-RATING", payLoad: "1" })}
+            onChange={() => dispatch({ type: "FILTER-RATING", payload: "1" })}
           />
           1 stars & above
         </label>
       </div>
+
+      {/* sort filter */}
+
       <div className="flex">
         <p className="title"> Sort by</p>
         <label>
@@ -110,7 +135,7 @@ const Filters = () => {
             defaultValue="highToLow"
             checked={state.sort === "highToLow"}
             onChange={() =>
-              dispatch({ type: "SORT-HIGH-TO-LOW", payLoad: "highToLow" })
+              dispatch({ type: "SORT-HIGH-TO-LOW", payload: "highToLow" })
             }
           />
           Price- High-to-Low
@@ -122,7 +147,7 @@ const Filters = () => {
             defaultValue="lowToHigh"
             checked={state.sort === "lowToHigh"}
             onChange={() =>
-              dispatch({ type: "SORT-LOW-TO-HIGH", payLoad: "lowToHigh" })
+              dispatch({ type: "SORT-LOW-TO-HIGH", payload: "lowToHigh" })
             }
           />
           Price- Low-to-High
