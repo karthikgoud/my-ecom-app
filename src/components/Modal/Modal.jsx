@@ -2,10 +2,17 @@ import { useEffect, useState } from "react";
 import "./Modal.css";
 import { useData } from "../../context/DataContext";
 
-const Modal = ({ show, onClose, addressFields }) => {
+const Modal = ({
+  show,
+  onClose,
+  addressFields,
+  showSaveBtn,
+  showUpdateBtn,
+}) => {
   const { productDispatch } = useData();
 
   const newAddressFields = {
+    idAddress: null,
     name: "",
     houseNo: "",
     colony: "",
@@ -51,6 +58,13 @@ const Modal = ({ show, onClose, addressFields }) => {
           <h4 className="modal-title">Add New Address</h4>
         </div>
         <div className="modal-body">
+          <input
+            type="number"
+            placeholder="Enter Id"
+            name="Id"
+            value={newAddress.idAddress}
+            onChange={(e) => fillFormInput(e, "idAddress")}
+          />
           <input
             type="text"
             placeholder="Enter name"
@@ -116,12 +130,16 @@ const Modal = ({ show, onClose, addressFields }) => {
           />
         </div>
         <div className="modal-footer">
-          <button className="modal-btn" onClick={handleSave}>
-            Save
-          </button>
-          <button className="modal-btn" onClick={handleUpdate}>
-            Update
-          </button>
+          {showSaveBtn && (
+            <button className="modal-btn" onClick={handleSave}>
+              Save
+            </button>
+          )}
+          {showUpdateBtn && (
+            <button className="modal-btn" onClick={handleUpdate}>
+              Update
+            </button>
+          )}
           <button className="modal-btn" onClick={onClose}>
             Cancel
           </button>

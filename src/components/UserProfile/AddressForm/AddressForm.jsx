@@ -11,11 +11,16 @@ const AddressForm = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [updateAddress, setUpdateAddress] = useState({});
+  const [showSaveBtn, setShowSaveBtn] = useState(false);
+  const [showUpdateBtn, setShowUpdateBtn] = useState(false);
 
   function handleAddNewAddress() {
+    setShowSaveBtn(true);
+    setShowUpdateBtn(false);
     modalHandler();
     setUpdateAddress((prev) => ({
       ...prev,
+      idAddress: "",
       name: "",
       houseNo: "",
       colony: "",
@@ -34,12 +39,15 @@ const AddressForm = () => {
 
   function handleDelete(address) {
     const filteredAdd = productState.addressList.filter(
-      (item) => item.name !== address.name
+      (item) => item.idAddress !== address.idAddress
     );
     productDispatch({ type: "DELETE_ADDRESS", payload: filteredAdd });
   }
 
   function handleEdit(address) {
+    setShowSaveBtn(false);
+    setShowUpdateBtn(true);
+
     modalHandler();
     setUpdateAddress((prev) => ({ ...prev, ...address }));
   }
@@ -55,8 +63,9 @@ const AddressForm = () => {
             <div className="address-details">
               <div className="address-name">{address.name}</div>
               <div>
-                House no : {address.houseNo} , {address.colony}, {address.area},{" "}
-                {address.city},{address.state},{address.country}
+                ID-{address.idAddress} : House no : {address.houseNo} ,{" "}
+                {address.colony}, {address.area}, {address.city},{address.state}
+                ,{address.country}
                 {address.postalCode}
               </div>
               <div>Phone: {address.phoneNo}</div>
@@ -87,6 +96,8 @@ const AddressForm = () => {
         addressFields={updateAddress}
         onClose={modalHandler}
         show={showModal}
+        showSaveBtn={showSaveBtn}
+        showUpdateBtn={showUpdateBtn}
       />
     </div>
   );
