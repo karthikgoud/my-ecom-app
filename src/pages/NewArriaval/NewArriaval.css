@@ -1,0 +1,17 @@
+.new-arraival-cont {
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.back-to-main {
+  text-decoration: none;
+}
+
+.new-arraival-cont p {
+  font-size: 0.9rem;
+}
