@@ -14,6 +14,7 @@ import CheckOut from "./pages/CheckOut/CheckOut";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserProfile from "./pages/UserProfilePage/UserProfile";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import NewArriaval from "./pages/NewArriaval/NewArriaval";
 
 function App() {
   const { isLoggedIn, isSignUp } = useAuth();
@@ -40,6 +41,7 @@ function App() {
         {isSignUp && <Route path="/signup" element={<ProductListing />} />}
         <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/newarraival" element={<NewArriaval />} />
 
         <Route
           path="/wishlist"
