@@ -1,5 +1,5 @@
   <img src="/images/hero-img-1.jpg" height="100" width="100" alt="logo"/>
-
+![Alt text](public/images/allinone-logo-crop.jpeg)
 # All-In-One-Shop
 
 An Ecommerce website for Fashion
