@@ -1,9 +1,4 @@
-import {
-  faHeart,
-  faCircleXmark,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import { faCircleXmark as darkClose } from "@fortawesome/free-regular-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./WishCard.css";

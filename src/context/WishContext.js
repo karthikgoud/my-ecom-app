@@ -7,7 +7,7 @@ import { useAuth } from "./AuthContext";
 export const WishContext = createContext();
 
 export const WishProvider = ({ children }) => {
-  const { wish, setWish, productDispatch, productState } = useData();
+  const { wish, setWish, productDispatch } = useData();
 
   const { addToCart, wishUpdate } = useCart();
 
@@ -96,7 +96,6 @@ export const WishProvider = ({ children }) => {
 
   const delWishMoveToCart = (item) => {
     addToCart(item);
-    wishUpdate(item._id);
   };
 
   useEffect(() => {
