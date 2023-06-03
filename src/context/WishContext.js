@@ -41,7 +41,7 @@ export const WishProvider = ({ children }) => {
 
   const addWish = async (item) => {
     if (!isLoggedIn && !isSignUp) {
-      ToastHandler("warn", "Login to access wish cart");
+      ToastHandler("error", "Login to access wish cart");
     } else {
       try {
         const keyToken = localStorage.getItem("token");
@@ -59,6 +59,7 @@ export const WishProvider = ({ children }) => {
         });
         const wishData = await res.json();
         productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+        wishUpdate(item._id);
         ToastHandler("success", "Added to WishList");
       } catch (e) {
         console.error(e);
@@ -76,8 +77,9 @@ export const WishProvider = ({ children }) => {
         },
       });
       const wishData = await res.json();
-      wishUpdate(id);
+
       productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+      wishUpdate(id);
       ToastHandler("warn", "Removed from WishList");
     } catch (e) {
       console.log(e);

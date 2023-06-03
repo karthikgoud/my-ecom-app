@@ -14,7 +14,7 @@ const ProductListCard = ({ item }) => {
 
   return (
     <div className="product-card-container">
-      <div className="heart" onClick={() => wishUpdate(item._id)}>
+      <div className="heart">
         {item.isWished && (
           <button onClick={() => deleteWish(item._id)}>
             <FontAwesomeIcon
