@@ -5,8 +5,6 @@ export const productReducer = (state, action) => {
       return { ...state, data: action.payload };
     case "WISH_UPDATE":
       return { ...state, data: action.payload };
-    case "TOGGLE_ADD_TO_CART_BTN":
-      return { ...state, data: action.payload };
 
     // category
     case "GET_CATEGORY":

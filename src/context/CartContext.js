@@ -14,7 +14,17 @@ export const CartProvider = ({ children }) => {
     const carted = [...productState.data].map((item) =>
       item._id === id ? { ...item, isCarted: !item.isCarted } : item
     );
-    productDispatch({ type: "TOGGLE_ADD_TO_CART_BTN", payload: carted });
+    productDispatch({ type: "WISH_UPDATE", payload: carted });
+  }
+
+  function wishUpdate(id) {
+    if (!isLoggedIn && !isSignUp) {
+      return null;
+    }
+    const wishUpdate = [...productState.data].map((item) =>
+      item._id === id ? { ...item, isWished: !item.isWished } : item
+    );
+    productDispatch({ type: "WISH_UPDATE", payload: wishUpdate });
   }
 
   const getCart = async () => {
@@ -137,6 +147,7 @@ export const CartProvider = ({ children }) => {
         });
         const wishData = await res.json();
         productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+        wishUpdate(item._id);
         ToastHandler("success", "Added to WishList");
       } catch (e) {
         console.error(e);
@@ -192,7 +203,6 @@ export const CartProvider = ({ children }) => {
 
   const delCartMoveToWish = (item) => {
     addWishFromCart(item);
-    removeFromCart(item);
   };
 
   useEffect(() => {
@@ -208,6 +218,7 @@ export const CartProvider = ({ children }) => {
         removeOne,
         addOne,
         toggleAddToCartBtn,
+        wishUpdate,
       }}
     >
       {children}

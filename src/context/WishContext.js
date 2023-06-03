@@ -9,19 +9,9 @@ export const WishContext = createContext();
 export const WishProvider = ({ children }) => {
   const { wish, setWish, productDispatch, productState } = useData();
 
-  const { addToCart } = useCart();
+  const { addToCart, wishUpdate } = useCart();
 
   const { isLoggedIn, isSignUp } = useAuth();
-
-  function wishUpdate(id) {
-    if (!isLoggedIn && !isSignUp) {
-      return null;
-    }
-    const wishUpdate = [...productState.data].map((item) =>
-      item._id === id ? { ...item, isWished: !item.isWished } : item
-    );
-    productDispatch({ type: "WISH_UPDATE", payload: wishUpdate });
-  }
 
   const getWish = async () => {
     try {
@@ -105,7 +95,6 @@ export const WishProvider = ({ children }) => {
   };
 
   const delWishMoveToCart = (item) => {
-    deleteWish(item._id);
     addToCart(item);
     wishUpdate(item._id);
   };
