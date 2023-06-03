@@ -1,4 +1,4 @@
-  <img src="public/images/allinone-logo-crop.jpeg" height="100" width="100" alt="logo"/>
+  <img src="/images/hero-img-1.jpg" height="100" width="100" alt="logo"/>
 
 # All-In-One-Shop
 
