@@ -20,7 +20,7 @@ const Header = () => {
     productState: { cartData, wishListData },
   } = useData();
 
-  const { isLoggedIn, setIsLoggedIn, setIsSignUp } = useAuth();
+  const { user, isLoggedIn, setIsLoggedIn, isSignUp, setIsSignUp } = useAuth();
 
   function handleLogout() {
     setIsLoggedIn(false);
@@ -109,12 +109,13 @@ const Header = () => {
           </NavLink>
         </div>
         {isLoggedIn && (
-          <NavLink to="/userprofile">
+          <NavLink to="/userprofile" style={{ textDecoration: "none" }}>
             <FontAwesomeIcon
               icon={faCircleUser}
               size="xl"
               style={{ color: "#999a9a" }}
-            />
+            />{" "}
+            {(isLoggedIn || isSignUp) && `Hi ${user?.firstName}`}
           </NavLink>
         )}
       </div>

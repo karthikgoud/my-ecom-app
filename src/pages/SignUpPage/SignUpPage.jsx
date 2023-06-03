@@ -126,7 +126,7 @@ const SignUpPage = () => {
             Create New Account
           </button>
           <a className="create-new-acc" href="/login">
-            Already have account
+            Existing User? Login
             <FontAwesomeIcon
               icon={faAngleRight}
               size="xl"

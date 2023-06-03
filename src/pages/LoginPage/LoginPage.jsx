@@ -76,7 +76,7 @@ const LoginPage = () => {
             {isLoggedIn ? "Logout" : "Login as Guest"}
           </button>
           <a className="create-new-acc" href="/signup">
-            Create new account
+            New member? Create an account
             <FontAwesomeIcon
               icon={faAngleRight}
               size="xl"
