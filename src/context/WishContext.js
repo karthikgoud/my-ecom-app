@@ -43,26 +43,44 @@ export const WishProvider = ({ children }) => {
     if (!isLoggedIn && !isSignUp) {
       ToastHandler("error", "Login to access wish cart");
     } else {
-      try {
-        const keyToken = localStorage.getItem("token");
+      const keyToken = localStorage.getItem("token");
 
-        const data = {
-          product: item,
-        };
+      const res = await fetch("/api/user/wishlist", {
+        headers: {
+          authorization: keyToken,
+        },
+      });
+      const wishData = await res.json();
 
-        const res = await fetch("/api/user/wishlist", {
-          method: "POST",
-          headers: {
-            authorization: keyToken,
-          },
-          body: JSON.stringify(data),
-        });
-        const wishData = await res.json();
-        productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-        wishUpdate(item._id);
-        ToastHandler("success", "Added to WishList");
-      } catch (e) {
-        console.error(e);
+      const isInWish = wishData.wishlist.some(
+        (product) => product._id === item._id
+      );
+
+      if (isInWish) {
+        ToastHandler("info", "Alread in WishList");
+      } else {
+        // sdsd
+        try {
+          const keyToken = localStorage.getItem("token");
+
+          const data = {
+            product: item,
+          };
+
+          const res = await fetch("/api/user/wishlist", {
+            method: "POST",
+            headers: {
+              authorization: keyToken,
+            },
+            body: JSON.stringify(data),
+          });
+          const wishData = await res.json();
+          productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+          wishUpdate(item._id);
+          ToastHandler("success", "Added to WishList");
+        } catch (e) {
+          console.error(e);
+        }
       }
     }
   };
