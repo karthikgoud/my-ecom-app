@@ -1,4 +1,3 @@
-import { faHeart, faGitHub } from "@fortawesome/free-solid-svg-icons";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Footer.css";
@@ -14,7 +13,7 @@ const Footer = () => {
         <div className="copy-cont">
           <div>
             <span>All In One Shop</span> <FontAwesomeIcon icon={faCopyright} />{" "}
-            2032
+            2023
           </div>
           <div>made by Karthik Goud</div>
         </div>
