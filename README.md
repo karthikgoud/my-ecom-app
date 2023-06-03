@@ -1,5 +1,3 @@
-  <img src="/images/hero-img-1.jpg" height="100" width="100" alt="logo"/>
-![Alt text](public/images/allinone-logo-crop.jpeg)
 ![allinone-logo-crop-1](https://github.com/karthikgoud/my-ecom-app/assets/9660782/03058e45-a8f7-44e3-b336-c5cd9a864fe4)
 
 # All-In-One-Shop
