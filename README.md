@@ -1,3 +1,5 @@
+<img src="https://github.com/karthikgoud/my-ecom-app/assets/9660782/03058e45-a8f7-44e3-b336-c5cd9a864fe4" alt="logo" height="100" width="100"/>
+
 ![allinone-logo-crop-1](https://github.com/karthikgoud/my-ecom-app/assets/9660782/03058e45-a8f7-44e3-b336-c5cd9a864fe4)
 
 # All-In-One-Shop
