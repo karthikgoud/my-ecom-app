@@ -1,17 +1,16 @@
 import { useData } from "../../context/DataContext";
 import { ToastHandler } from "../Toast/Toast";
 import "./CheckOutDetails.css";
-import { faTag, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CheckOutDetails = ({ cartTotal, address }) => {
+const CheckOutDetails = ({ cartTotal }) => {
   const {
-    productDispatch,
     productState: { cartData, orderAddress, couponDiscount },
   } = useData();
 
   function handlePlaceOrder() {
-    ToastHandler("success", "Order Placed, Thank You !!!");
+    !orderAddress.name
+      ? ToastHandler("error", "Select address to deliver")
+      : ToastHandler("success", "Order Placed, Thank You !!!");
   }
 
   return (
