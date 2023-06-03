@@ -6,12 +6,16 @@ import { useCart } from "../../context/CartContext";
 import { useWish } from "../../context/WishContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
+import { useData } from "../../context/DataContext";
 
 const ProductDetails = () => {
   const { productId } = useParams();
   // console.log(productId);
   const { addToCart } = useCart();
   const { addWish } = useWish();
+  const {
+    productState: { data },
+  } = useData();
 
   const [singleProduct, setSingleProduct] = useState({});
   const [singlePageLoader, setSinglePageLoader] = useState(true);
@@ -32,7 +36,9 @@ const ProductDetails = () => {
     gettingDetailByProductId();
   }, [productId]);
 
-  // console.log("state", singleProduct);
+  const productObj = data.find((item) => item._id === productId);
+
+  console.log("state", productObj);
 
   return (
     <div className="single-page">
@@ -97,12 +103,14 @@ const ProductDetails = () => {
                 <button
                   className="single-card-btn"
                   onClick={() => addWish(singleProduct)}
+                  disabled={productObj.isWished}
                 >
                   Add to WishList
                 </button>
                 <button
                   className="single-card-btn"
                   onClick={() => addToCart(singleProduct)}
+                  disabled={productObj.isCarted}
                 >
                   Add to Cart
                 </button>

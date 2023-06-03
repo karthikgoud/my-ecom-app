@@ -110,3 +110,8 @@
   background-color: #34495e;
   color: white;
 }
+
+.single-card-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
