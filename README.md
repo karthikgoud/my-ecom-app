@@ -1,9 +1,8 @@
-<div align="center">
-  <img src="/images/allinone-logo-crop.jpeg" height="100" width="100" alt="logo"/>
-  
+  <img src="public/images/allinone-logo-crop.jpeg" height="100" width="100" alt="logo"/>
+
 # All-In-One-Shop
-  An Ecommerce website for Fashion 
-</div>
+
+An Ecommerce website for Fashion
 
 ## **How to install and run locally ?**
 
@@ -23,6 +22,7 @@ $ npm start
 - Individual Product Detail page.
 - Wishlist managment.
 - Cart Managment.
+- User Profile page.
 - Address Managment.
 - Checkout page.
 - Authentication:
