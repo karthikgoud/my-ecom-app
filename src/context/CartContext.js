@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = async (item) => {
     if (!isLoggedIn && !isSignUp) {
-      ToastHandler("warn", "Login to access cart");
+      ToastHandler("error", "Login to access cart");
     } else {
       const keyToken = localStorage.getItem("token");
 
@@ -105,25 +105,42 @@ export const CartProvider = ({ children }) => {
   };
 
   const addWishFromCart = async (item) => {
-    try {
-      const keyToken = localStorage.getItem("token");
+    const keyToken = localStorage.getItem("token");
 
-      const data = {
-        product: item,
-      };
+    const res = await fetch("/api/user/wishlist", {
+      headers: {
+        authorization: keyToken,
+      },
+    });
+    const wishData = await res.json();
 
-      const res = await fetch("/api/user/wishlist", {
-        method: "POST",
-        headers: {
-          authorization: keyToken,
-        },
-        body: JSON.stringify(data),
-      });
-      const wishData = await res.json();
-      productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
-      ToastHandler("success", "Added to WishList");
-    } catch (e) {
-      console.error(e);
+    const isInWish = wishData.wishlist.some(
+      (product) => product._id === item._id
+    );
+
+    if (isInWish) {
+      ToastHandler("info", "Alread in WishList");
+    } else {
+      try {
+        const keyToken = localStorage.getItem("token");
+
+        const data = {
+          product: item,
+        };
+
+        const res = await fetch("/api/user/wishlist", {
+          method: "POST",
+          headers: {
+            authorization: keyToken,
+          },
+          body: JSON.stringify(data),
+        });
+        const wishData = await res.json();
+        productDispatch({ type: "SET_WISH", payload: wishData.wishlist });
+        ToastHandler("success", "Added to WishList");
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
