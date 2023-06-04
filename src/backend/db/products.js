@@ -63,6 +63,25 @@ export const products = [
     size: "s",
     delivery: "in 5 days",
   },
+  {
+    _id: uuid(),
+    title: "Men`s Shirts",
+    price: "3000",
+    disCountedPrice: "2700",
+    amountSaved: "300",
+    image: "/images/men-products/men-dress-5.jpg",
+    categoryName: "Men",
+    rating: 4,
+    isWished: false,
+    discount: "15%",
+    deliveryCharges: "100",
+    isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "s",
+    delivery: "in 3 days",
+  },
 
   // ---------------------- women--------------------------
 
@@ -123,6 +142,25 @@ export const products = [
     size: "L",
     delivery: "in 4 days",
   },
+  {
+    _id: uuid(),
+    title: "Mufti Top",
+    price: "3500",
+    disCountedPrice: "2900",
+    amountSaved: "600",
+    image: "/images/women-products/women-dress-6.jpg",
+    categoryName: "Women",
+    rating: 4.5,
+    isWished: false,
+    discount: "23%",
+    deliveryCharges: "135",
+    isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "L",
+    delivery: "in 4 days",
+  },
   // ---------------- kids-------------------------
 
   {
@@ -170,6 +208,25 @@ export const products = [
     disCountedPrice: "1250",
     amountSaved: "250",
     image: "/images/kids-products/kid-3.jpg",
+    categoryName: "Kids",
+    rating: 4.1,
+    isWished: false,
+    discount: "10%",
+    deliveryCharges: "100",
+    isCarted: false,
+    availability: "In stock",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, quasi!",
+    size: "M",
+    delivery: "in 1 days",
+  },
+  {
+    _id: uuid(),
+    title: "Speedo Track suit",
+    price: "2500",
+    disCountedPrice: "2100",
+    amountSaved: "400",
+    image: "/images/kids-products/kids-dress-6.jpg",
     categoryName: "Kids",
     rating: 4.1,
     isWished: false,
