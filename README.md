@@ -44,3 +44,7 @@ $ npm start
 ## **Demo:**
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/58260342/161412291-aec62d98-98bd-4902-8109-1069406702b4.gif)
+
+
+https://github.com/karthikgoud/my-ecom-app/assets/9660782/f11a39a4-46b5-44c2-ace2-32a36020c341
+
